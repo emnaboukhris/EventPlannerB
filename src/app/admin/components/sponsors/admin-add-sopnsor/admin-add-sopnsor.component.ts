@@ -71,8 +71,9 @@ export class AdminAddSopnsorComponent implements OnInit {
   
        this.router.navigate([link]);
   
+   formulaire.value['eventId']=+this.eventId
   
-   this.sponsorService.addSponsor(+this.eventId,this.formData ).subscribe(
+   this.sponsorService.addSponsor(formulaire.value ).subscribe(
     (response: any) => {
       console.log("Promise resolved with data:", response);
   

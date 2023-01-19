@@ -19,11 +19,11 @@ public getSponsorById(id :number ,eventId:number):Observable<Sponsor>{
   return this.http.post<Sponsor>(`${APIS.sponsors}`,[eventId,id])
 }
 
-public updateSponsor(eventId: number,formData: Sponsor):Observable<Sponsor>{
+public updateSponsor(formData: Sponsor):Observable<Sponsor>{
   return this.http.put<Sponsor>(`${APIS.sponsors}`,formData)
 }
 
-public addSponsor(eventId : number ,formData: Sponsor ):Observable<Sponsor>{
+public addSponsor(formData: Sponsor ):Observable<Sponsor>{
   return this.http.post<Sponsor>(`${APIS.sponsors}`,formData)
 }
 

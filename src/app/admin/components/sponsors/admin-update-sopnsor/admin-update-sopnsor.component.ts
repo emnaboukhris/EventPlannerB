@@ -97,8 +97,8 @@ export class AdminUpdateSopnsorComponent implements OnInit {
   
        this.router.navigate([link]);
   
-  
-   this.sponsorService.updateSponsor(+this.eventId,this.formData ).subscribe(
+  this.updateSponsorForm!.value['eventId']=+this.eventId;
+   this.sponsorService.updateSponsor( this.updateSponsorForm!.value ).subscribe(
     (response: any) => {
       console.log("Promise resolved with data:", response);
       let link ="admin/events/"+this.eventId+"/sponsors" ;

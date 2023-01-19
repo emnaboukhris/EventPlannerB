@@ -12,11 +12,11 @@ export class SpeakerService {
   constructor(private http: HttpClient) {}
    
 public getSpeakers(eventId:number):Observable<Speaker[]>{
-  return this.http.post<Speaker[]>(`${APIS.speakers}`,eventId)
+  return this.http.post<Speaker[]>(`${APIS.speakers}/all`,{"eventId":eventId})
 }
 
-public getSpeakerById(id :number ,eventId:number):Observable<Speaker>{
-  return this.http.post<Speaker>(`${APIS.speakers}`,[eventId,id])
+public getSpeakerById(id :number):Observable<Speaker>{
+  return this.http.post<Speaker>(`${APIS.speakers}/one`,{"id":id})
 }
 
 public updateSpeaker(formData: Speaker):Observable<Speaker>{
@@ -28,7 +28,7 @@ public addSpeaker(formData: Speaker):Observable<Speaker>{
 }
 
 public deleteSpeaker(eventId : number,id: number ):Observable<void>{
-  return this.http.delete<void>(`${APIS.speakers}/${eventId}/${id}`)
+  return this.http.delete<void>(`${APIS.speakers}/${id}`)
 }
 
 }

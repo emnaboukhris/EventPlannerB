@@ -119,7 +119,8 @@ addOption() {
     firstFormGroup = this._formBuilder.group({ firstCtrl: ['', Validators.required],});
   
    addSession(formulaire :NgForm) : void {
-    this.sessionService.addSession(+this.eventId,formulaire.value).subscribe(
+    formulaire.value['eventId']=+this.eventId;
+    this.sessionService.addSession(formulaire.value).subscribe(
       (response: any) => {
         console.log("Promise resolved with data:", response);    
       },
@@ -155,8 +156,8 @@ addOption() {
   
   
   
-  
-   this.speakerService.addSpeaker(+this.eventId,this.formData ).subscribe(
+  formulaire.value['eventId']=+this.eventId
+   this.speakerService.addSpeaker( formulaire.value ).subscribe(
     (response: any) => {
       console.log("Promise resolved with data:", response);
   

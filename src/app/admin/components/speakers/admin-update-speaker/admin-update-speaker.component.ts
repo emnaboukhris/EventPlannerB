@@ -10,14 +10,24 @@ import { SpeakerService } from 'src/app/services/speaker.service';
   styleUrls: ['./admin-update-speaker.component.css']
 })
 export class AdminUpdateSpeakerComponent implements OnInit {
-imageSrc :string ="src\assets\images\profile.jpeg"
-eventId  ="1"
-updateSpeakerForm: FormGroup | undefined;
+imageSrc :string ="src\assets\images\profile.jpeg";
+updateSpeakerForm!: FormGroup ;
+eventId!: number;
 speaker!: Speaker;
 speakerForm!: FormGroup;
-speakerId!: string;
+speakerId!: number;
 errorMessage:string=""
 formData = new FormData();
+
+
+
+
+
+
+
+
+
+
 
   uploadFile(event :any) {
     const file = event.target.files[0];
@@ -55,11 +65,16 @@ formData = new FormData();
     });
     this.activatedRoute.parent?.parent?.params.subscribe(
       (params)=> {
-        console.log("params :" ,params['id'])
-      this.eventId =params['idEvent'] ; 
-      this.speakerId = params['id'];
+        this.eventId = +params['idEvent'];
 
-      this.speakerService.getSpeakerById(+this.speakerId,+this.eventId).subscribe((speaker: Speaker) => {
+      }
+    )
+    this.activatedRoute.params.subscribe(
+      (params)=> {
+        console.log("params :" ,params['id'])
+      this.speakerId = +params['id'];
+
+      this.speakerService.getSpeakerById(+this.speakerId).subscribe((speaker: Speaker) => {
         this.speaker = speaker;
         this.updateSpeakerForm!.patchValue({
           firstName: this.speaker.firstName,
@@ -97,8 +112,6 @@ formData = new FormData();
   updateSpeaker () : void {
 
 
-    this.formData.append('id', this.speakerId);
-
 this.formData.append('firstName', this.updateSpeakerForm!.value.firstName);
 this.formData.append('lastName', this.updateSpeakerForm!.value.lastName);
 this.formData.append('email', this.updateSpeakerForm!.value.email);
@@ -109,17 +122,14 @@ this.formData.append('linkedinLink', this.updateSpeakerForm!.value.linkedinLink)
 
     console.log("this is the speaker " ,this.formData.get('firstname'))
     console.log(this.activatedRoute.parent)
-    let link ="admin/events/"+this.eventId+"/speakers" ;
-    // this.router.navigate(['/speakers' ,{relativeTo: this.activatedRoute.parent}]);
+     this.updateSpeakerForm!.value['id']=+this.speakerId;
 
-     this.router.navigate([link]);
-
-
- this.speakerService.updateSpeaker(+this.eventId,this.formData ).subscribe(
+ this.speakerService.updateSpeaker( this.updateSpeakerForm!.value).subscribe(
   (response: any) => {
     console.log("Promise resolved with data:", response);
+    console.log("Speaker: ",this.speaker);
     let link ="admin/events/"+this.eventId+"/speakers" ;
-     this.router.navigate([link]);
+     this.router.navigate([link ]);
 
   },
   (error:any) => {

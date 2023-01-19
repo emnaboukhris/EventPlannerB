@@ -60,8 +60,8 @@ errorMessage:string=""
   addSpeaker (formulaire: NgForm) : void {
 
 
-this.formData.append('firstname', formulaire.value.firstname);
-this.formData.append('lastname', formulaire.value.lastname);
+this.formData.append('firstName', formulaire.value.firstname);
+this.formData.append('lastName', formulaire.value.lastname);
 this.formData.append('job', formulaire.value.job);
 this.formData.append('company', formulaire.value.company);
 this.formData.append('description', formulaire.value.description);

@@ -29,8 +29,6 @@ import { AdminProfileComponent } from './admin/components/admin-profile/admin-pr
 import { ROUTING } from './app.routing';
 import { NgForm } from '@angular/forms';
 import { AdminScheduleComponent } from './admin/components/admin-schedule/admin-schedule.component';
-import { FeatherModule } from 'angular-feather';
-import { Edit } from 'angular-feather/icons';
 import { AdminAddSpeakerComponent } from './admin/components/speakers/admin-add-speaker/admin-add-speaker.component';
 import { AdminUpdateSpeakerComponent } from './admin/components/speakers/admin-update-speaker/admin-update-speaker.component';
 import { AdminSpeakersComponent } from './admin/components/speakers/admin-speakers/admin-speakers.component';
@@ -57,9 +55,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {  HTTP_INTERCEPTORS } from '@angular/common/http';
 
-const icons = {
-  Edit
-};
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -119,7 +115,6 @@ const icons = {
         CommonModule,
         FormsModule,
         BrowserModule,
-        FeatherModule.pick(icons),
         ReactiveFormsModule,
         NgxPaginationModule,
         HttpClientModule

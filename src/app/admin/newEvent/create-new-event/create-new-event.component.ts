@@ -30,7 +30,7 @@ this.currentStep-- ;
   }
 
   submit() { 
-    const link = ['admin/events/1/profile'] ; 
+    const link = ['admin/events/2/profile'] ; 
     this.router.navigate(link)
 
   }

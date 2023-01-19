@@ -38,14 +38,14 @@
                   
                                       <div class=" col mb-3">
                                         
-                                          <label for="lastname" class="form-label">Firstname </label>
+                                          <label for="firstName" class="form-label">Firstname </label>
                                           <input
                                           required 
                                           ngModel
                                           #firstnameInput="ngModel"
-                                          name="firstname"
+                                          name="firstName"
                                           class="form-control" 
-                                          placeholder="firstname"
+                                          placeholder="firstName"
 
                                           type="text" >
                                           <div class="alert alert-danger" *ngIf="firstnameInput.invalid && firstnameInput.touched"> 
@@ -55,11 +55,11 @@
                                                         </div>
                                       <div class=" col mb-3">
                   
-                                          <label for="lastname" class="form-label">Lastname </label>
+                                          <label for="lastName" class="form-label">Lastname </label>
                                           <input
                                           #lastnameInput="ngModel"
-                                          name="lastname"
-                                          placeholder="lastname"
+                                          name="lastName"
+                                          placeholder="lastName"
                                           required 
                                           ngModel
                                           class="form-control" 
