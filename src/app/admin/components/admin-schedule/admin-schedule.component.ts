@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpeakerService } from 'src/app/services/speaker.service';
+import { SessionService } from 'src/app/services/session.service';
+import { Speaker } from 'src/app/models/Speaker';
 
 @Component({
   selector: 'app-admin-schedule',
@@ -19,6 +21,7 @@ export class AdminScheduleComponent implements OnInit {
   isBodyOpen = false;
   showSidebar = true;
   showSecondarySidebar = false;
+  speakers :Speaker[]=[]
   imageSrc :string ="src\assets\images\profile.jpeg"
   users :any = [
     { name: 'John Doe', age: 30, gender: 'Male' },
@@ -26,8 +29,8 @@ export class AdminScheduleComponent implements OnInit {
     { name: 'Bob Johnson', age: 35, gender: 'Other' }
   ];
 
-
-  sessions : any[] = [{
+sessions : Session[]=[]
+  session : any[] = [{
     activity:"flutter ",
     title:"flutter intro ",
     description:"teeeeeeeeeeeee", 
@@ -66,7 +69,7 @@ export class AdminScheduleComponent implements OnInit {
     speaker:"emna"
   }
 ]
-speakers = [
+speaker = [
   { value: 'option1', name: 'Option 1' },
   { value: 'option2', name: 'Option 2' },
   { value: 'option3', name: 'Option 3' }
@@ -98,17 +101,15 @@ addOption() {
         this.imageSrc = e.target.result;
       }
       reader.readAsDataURL(file);
-  
       this.formData.append('image', file);
-  
-  
     }
     
     constructor(
      private _formBuilder: FormBuilder, 
      private router: Router,
      private activatedRoute: ActivatedRoute,
-     private speakerService : SpeakerService 
+     private speakerService : SpeakerService ,
+     private sessionService :SessionService
       ) { }
   
  
@@ -117,7 +118,30 @@ addOption() {
   
     firstFormGroup = this._formBuilder.group({ firstCtrl: ['', Validators.required],});
   
-  
+   addSession(formulaire :NgForm) : void {
+    this.sessionService.addSession(+this.eventId,formulaire.value).subscribe(
+      (response: any) => {
+        console.log("Promise resolved with data:", response);    
+      },
+      (error:any) => {
+            console.log("Promise rejected with error:", error);
+          }
+          );
+
+
+          this.speakerService.getSpeakers(+this.eventId).subscribe(
+            (response: any) => {
+              console.log("Promise resolved with data:", response);    
+            },
+            (error:any) => {
+                  console.log("Promise rejected with error:", error);
+                }
+                );
+    
+   }
+
+
+
     addSpeaker (formulaire: NgForm) : void {
   
   
@@ -158,6 +182,23 @@ addOption() {
       (params)=> {
         console.log("params :" , params['idEvent'])
       this.eventId =params['idEvent'] ; 
+      this.sessionService.getSessions(+this.eventId).subscribe(
+        (sessions)=>{
+          this.sessions=sessions 
+        }, (error)=>{
+          this.errorMessage="probleme de connexion session" ; 
+
+        }
+      )
+
+      this.speakerService.getSpeakers(+this.eventId).subscribe(
+        (speakers)=>{
+          this.speakers=speakers 
+        }, (error)=>{
+          this.errorMessage="probleme de connexion speakers" ; 
+
+        }
+      )
       },
       (error)=>{
         console.log(error)

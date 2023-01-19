@@ -15,50 +15,129 @@
 
         </div>
         <div class="scroll card-body">
-        <form>
+      
+
+        <form #createSessionForm="ngForm">
                     
                        <div class="mb-3">
 
                             <label for="exampleFormControlInput1" class="form-label">Title </label>
-                            <input type="text" class="form-control" placeholder="Session title">
+                            <input type="text"
+                            required 
+                            ngModel
+                            #titleInput="ngModel"
+                            name="title"                            
+                            class="form-control" 
+                            placeholder="Session title">
                             </div>
+
+                            <div class="alert alert-danger" *ngIf="titleInput.invalid && titleInput.touched"> 
+                              Please enter the title.
+                           </div>
+                          
 
                             
                        <div class="mb-3">
 
                         <label for="exampleFormControlInput1" class="form-label">Activity </label>
-                        <input type="text" class="form-control" placeholder="Activity type">
+                        <input type="text"
+                        required 
+                        ngModel
+                        #activityInput="ngModel"
+                        name="activity"                            
+                        class="form-control" 
+                        placeholder="Activity type"
+                        
+                        
+                        >
+
+                        <div class="alert alert-danger" *ngIf="activityInput.invalid && activityInput.touched"> 
+                          Please enter the activity.
+                       </div>
+                      
                         </div>
 
                             <div class="mb-3">
-
                                 <label for="exampleFormControlInput1" class="form-label">Starting time 
                                 </label>
-                                <input type="datetime-local" id="meeting-time" name="Start time" class="form-control"  value="yyyy-mm-ddTh:min">
+                                <input type="datetime-local" id="meeting-time"
+                                 required 
+                                 ngModel
+                                 #startTimeInput="ngModel"
+                                 name="startTime"                            
+                                 class="form-control" 
+                                 
+                                  value="yyyy-mm-ddTh:min">
                             </div>
-
+                            <div class="alert alert-danger" *ngIf="startTimeInput.invalid && startTimeInput.touched"> 
+                              Please enter the startTime.
+                           </div>
                                 
                                 <div class="mb-3">
 
                                     <label for="exampleFormControlInput1" class="form-label">Ending time</label>
-                                    <input type="datetime-local" id="meeting-time" name="meeting-time" class="form-control"  value="yyyy-mm-ddTh:min">
+                                    <input type="datetime-local"
+                                     id="meeting-time"
+                                     required 
+                                     ngModel
+                                     #endTimeInput="ngModel"
+                                     name="endTime"                            
+    
+
+                                       class="form-control"  
+                                       value="yyyy-mm-ddTh:min">
+
+                                       <div class="alert alert-danger" *ngIf="endTimeInput.invalid && endTimeInput.touched"> 
+                                        Please enter the endTime.
+                                     </div>
                                 </div>
 
                                 <div class="mb-3">
 
-                                    <label for="exampleFormControlInput1" class="form-label">Description</label>
-                                    <textarea class="form-control" rows="2" placeholder="session description"></textarea>
+                                    <label for="exampleFormControlInput1"
+                                     class="form-label">Description</label>
+                                    <textarea class="form-control"
+                                    ngModel
+                                    #descriptionInput="ngModel"
+                                    name="description"
+                                    
+                                    
+                                    rows="2" placeholder="session description"></textarea>
+                              
                                 </div>
 <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Speaker</label>
 
    
       <div class="input-group">
-        <select class="form-control" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}">
-            <option *ngFor="let option of speakers" [value]="option.value">{{ option.name }}</option>
+        <select class="form-control" 
+        required 
+        ngModel
+        #speakerInput="ngModel"
+        name="speaker"                            
+
+        
+        [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let option of speakers" [value]="option.id">{{ option.firstName}} +{{ option.lastName}}</option>
         </select>
+
+
+        <div class="alert alert-danger" *ngIf="speakerInput.invalid && speakerInput.touched"> 
+          Please enter the speaker.
+       </div>
         <div class="input-group-append">
-            <button class="btn btn-primary toggle2"  (click)="toggleSidebarSpeaker()" (click)="showSecondarySidebar = !showSecondarySidebar">Add</button>
+
+                        
+       <button
+       [disabled]="createSessionForm.invalid"
+       (click)="addSession(createSessionForm)"
+       type="submit"
+       class="btn btn-primary toggle2"
+       (click)="toggleSidebarSpeaker()" (click)="showSecondarySidebar = !showSecondarySidebar"
+       >
+                     
+                     Add Session
+                     </button>
         </div>
     </div>
     
@@ -75,9 +154,7 @@
 
         </form>
         </div>
-        <div class="card-footer text-muted">
-            <button class=" btn btn-primary">  Add session</button>
-        </div>
+   
       </div>
 
       
@@ -120,7 +197,7 @@
                           required 
                           ngModel
                           #firstnameInput="ngModel"
-                          name="firstname"
+                          name="firstName"
                           class="form-control" 
                           placeholder="firstname"
 
@@ -135,7 +212,7 @@
                           <label for="lastname" class="form-label">Lastname </label>
                           <input
                           #lastnameInput="ngModel"
-                          name="lastname"
+                          name="lastName"
                           placeholder="lastname"
                           required 
                           ngModel

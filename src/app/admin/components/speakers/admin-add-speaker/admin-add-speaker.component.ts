@@ -78,8 +78,8 @@ this.formData.append('linkedinLink', formulaire.value.linkedinLink);
 
      this.router.navigate([link]);
 
-
- this.speakerService.addSpeaker(+this.eventId,this.formData ).subscribe(
+formulaire.value['eventId']=+this.eventId
+ this.speakerService.addSpeaker(formulaire.value ).subscribe(
   (response: any) => {
     console.log("Promise resolved with data:", response);
 

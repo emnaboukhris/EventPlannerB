@@ -12,23 +12,23 @@ export class SpeakerService {
   constructor(private http: HttpClient) {}
    
 public getSpeakers(eventId:number):Observable<Speaker[]>{
-  return this.http.post<Speaker[]>(`${APIS.event}${this.apiConst}`,[eventId])
+  return this.http.post<Speaker[]>(`${APIS.speakers}`,eventId)
 }
 
-public getSpeakerById(idSpeaker :number ,eventId:number):Observable<Speaker>{
-  return this.http.post<Speaker>(`${APIS.event}${this.apiConst}`,[eventId,idSpeaker])
+public getSpeakerById(id :number ,eventId:number):Observable<Speaker>{
+  return this.http.post<Speaker>(`${APIS.speakers}`,[eventId,id])
 }
 
-public updateSpeaker(eventId: number,formData: FormData):Observable<Speaker>{
-  return this.http.put<Speaker>(`${APIS.event}${this.apiConst}`,[eventId,formData])
+public updateSpeaker(formData: Speaker):Observable<Speaker>{
+  return this.http.put<Speaker>(`${APIS.speakers}`,formData)
 }
 
-public addSpeaker(eventId : number ,formData: FormData ):Observable<Speaker>{
-  return this.http.post<Speaker>(`${APIS.event}${this.apiConst}`,[eventId,formData])
+public addSpeaker(formData: Speaker):Observable<Speaker>{
+  return this.http.post<Speaker>(`${APIS.speakers}`,formData)
 }
 
-public deleteSpeaker(eventId : number,idSpeaker: number ):Observable<void>{
-  return this.http.delete<void>(`${APIS.event}${this.apiConst}/${eventId}/${idSpeaker}`)
+public deleteSpeaker(eventId : number,id: number ):Observable<void>{
+  return this.http.delete<void>(`${APIS.speakers}/${eventId}/${id}`)
 }
 
 }

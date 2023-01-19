@@ -12,23 +12,23 @@ export class SponsorService {
   constructor(private http: HttpClient) {}
    
 public getSponsors(eventId:number):Observable<Sponsor[]>{
-  return this.http.post<Sponsor[]>(`${APIS.event}${this.apiConst}`,[eventId])
+  return this.http.post<Sponsor[]>(`${APIS.sponsors}`,eventId)
 }
 
 public getSponsorById(id :number ,eventId:number):Observable<Sponsor>{
-  return this.http.post<Sponsor>(`${APIS.event}${this.apiConst}`,[eventId,id])
+  return this.http.post<Sponsor>(`${APIS.sponsors}`,[eventId,id])
 }
 
-public updateSponsor(eventId: number,formData: FormData):Observable<Sponsor>{
-  return this.http.put<Sponsor>(`${APIS.event}${this.apiConst}`,[eventId,formData])
+public updateSponsor(eventId: number,formData: Sponsor):Observable<Sponsor>{
+  return this.http.put<Sponsor>(`${APIS.sponsors}`,formData)
 }
 
-public addSponsor(eventId : number ,formData: FormData ):Observable<Sponsor>{
-  return this.http.post<Sponsor>(`${APIS.event}${this.apiConst}`,[eventId,formData])
+public addSponsor(eventId : number ,formData: Sponsor ):Observable<Sponsor>{
+  return this.http.post<Sponsor>(`${APIS.sponsors}`,formData)
 }
 
 public deleteSponsor(eventId : number,id: number ):Observable<void>{
-  return this.http.delete<void>(`${APIS.event}${this.apiConst}/${eventId}/${id}`)
+  return this.http.delete<void>(`${APIS.sponsors}/${eventId}/${id}`)
 }
 
 

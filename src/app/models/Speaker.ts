@@ -1,11 +1,11 @@
 
 export class Speaker  {
-    id :number ; 
+    id :number ;  
     job:string;
     company:string;
     description:string;
     eventId: number ; 
-   email : string ; 
+    email : string ; 
    firstName : string ; 
    lastName : string ; 
    image : string ;
