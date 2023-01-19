@@ -1,0 +1,357 @@
+<!--must include fontawesome cdn in <head> tag-->
+  
+        
+
+
+
+
+
+  <div class="open-sidebar" (click)="toggleSidebarContact()"></div>
+      <div class="sidebar-contact card"  >
+
+        <div class="card-header">
+
+            <h3>Add session</h3>
+
+        </div>
+        <div class="scroll card-body">
+        <form>
+                    
+                       <div class="mb-3">
+
+                            <label for="exampleFormControlInput1" class="form-label">Title </label>
+                            <input type="text" class="form-control" placeholder="Session title">
+                            </div>
+
+                            
+                       <div class="mb-3">
+
+                        <label for="exampleFormControlInput1" class="form-label">Activity </label>
+                        <input type="text" class="form-control" placeholder="Activity type">
+                        </div>
+
+                            <div class="mb-3">
+
+                                <label for="exampleFormControlInput1" class="form-label">Starting time 
+                                </label>
+                                <input type="datetime-local" id="meeting-time" name="Start time" class="form-control"  value="yyyy-mm-ddTh:min">
+                            </div>
+
+                                
+                                <div class="mb-3">
+
+                                    <label for="exampleFormControlInput1" class="form-label">Ending time</label>
+                                    <input type="datetime-local" id="meeting-time" name="meeting-time" class="form-control"  value="yyyy-mm-ddTh:min">
+                                </div>
+
+                                <div class="mb-3">
+
+                                    <label for="exampleFormControlInput1" class="form-label">Description</label>
+                                    <textarea class="form-control" rows="2" placeholder="session description"></textarea>
+                                </div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Speaker</label>
+
+   
+      <div class="input-group">
+        <select class="form-control" [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let option of speakers" [value]="option.value">{{ option.name }}</option>
+        </select>
+        <div class="input-group-append">
+            <button class="btn btn-primary toggle2"  (click)="toggleSidebarSpeaker()" (click)="showSecondarySidebar = !showSecondarySidebar">Add</button>
+        </div>
+    </div>
+    
+</div>
+                             
+
+                              
+
+                                
+
+
+                    
+           
+
+        </form>
+        </div>
+        <div class="card-footer text-muted">
+            <button class=" btn btn-primary">  Add session</button>
+        </div>
+      </div>
+
+      
+    <div class="sidebar-speaker card"  [ngClass]="{'active': isContactActive}" >
+
+        <div class="card-header">
+          <div class="row align-items-start">
+        <div class="col-1">   <i class="align-middle me-2" data-feather="arrow-left"></i></div>
+        <div class="col"> <h3>Add Speaker</h3></div>
+        </div>
+
+        </div>
+        <div class="scroll card-body">
+          <form #createSpeakerForm="ngForm">
+            <div class="profile-pic-wrapper">
+                  <div class="pic-holder">
+                    <!-- uploaded pic shown here -->
+                    <img id="image" class="pic"[src]="imageSrc">
+                
+                    <Input class="uploadProfileInput" type="file" name="image" id="newProfilePhoto" accept="image/*" style="opacity: 0;" (change)="uploadFile($event)" />
+                    <label for="newProfilePhoto" class="upload-file-block">
+                      <div class="text-center">
+                        <div class="mb-2">
+                          <i class="fa fa-camera fa-2x"></i>
+                        </div>
+                        <div class="text-uppercase"> Update <br/> Profile Photo
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+              </div>
+  
+         
+              <div class="form-row">
+  
+                      <div class=" col mb-3">
+                        
+                          <label for="lastname" class="form-label">Firstname </label>
+                          <input
+                          required 
+                          ngModel
+                          #firstnameInput="ngModel"
+                          name="firstname"
+                          class="form-control" 
+                          placeholder="firstname"
+
+                          type="text" >
+                          <div class="alert alert-danger" *ngIf="firstnameInput.invalid && firstnameInput.touched"> 
+                            Please enter the firstname.
+                         </div>
+                        
+                                        </div>
+                      <div class=" col mb-3">
+  
+                          <label for="lastname" class="form-label">Lastname </label>
+                          <input
+                          #lastnameInput="ngModel"
+                          name="lastname"
+                          placeholder="lastname"
+                          required 
+                          ngModel
+                          class="form-control" 
+                          type="text" 
+                          >
+                          <div class="alert alert-danger" *ngIf="lastnameInput.invalid && lastnameInput.touched"> 
+                            Please enter the lastname.
+                         </div>
+                                     
+                        </div>
+                      </div>
+                              <div class="form-row">
+                                  <div class=" col mb-3">
+              
+                                      <label for="job" class="form-label">Job </label>
+                                      <input 
+                                      required 
+
+                                      name="job"
+                                      ngModel
+                                      #jobInput="ngModel"
+
+                                      class="form-control" 
+                                      type="text" 
+                                      placeholder="Job"
+                                      
+                                      >
+                                      <div class="alert alert-danger" *ngIf="jobInput.invalid && jobInput.touched"> 
+                                        Please enter the job.
+                                     </div>
+
+                                                    </div>
+
+
+
+                                  <div class=" col mb-3">
+              
+                                      <label for="job" class="form-label">Company </label>
+                                      <input type="text" 
+                                      class="form-control" 
+                                      placeholder="Company"
+                                      name="job"
+                                      ngModel
+                                      #companyInput="ngModel"
+                                      
+                                      >
+                                                         </div>
+                            </div>
+                          
+  
+                                  <div class="mb-3">
+  
+                                      <label for="description" class="form-label">Description</label>
+                                      <textarea class="form-control"
+                                      name="description"
+                                      ngModel
+                                      #descriptionInput="ngModel"                                                      
+                                      rows="2" placeholder="Description">
+                                    </textarea>
+                                  </div>
+                                <div class="mb-3">
+  
+                                  <label for="email"
+                                   class="form-label"> Email </label>
+                                  <input type="email" 
+                                  name="email"
+                                  ngModel
+                                  #emailInput="ngModel"
+                                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                  class="form-control"
+                                  
+                                  placeholder="exemple@gmail.com ">
+                                  </div>
+                                  <div class="alert alert-danger" *ngIf="emailInput.invalid && emailInput.touched"> 
+                                    Please enter a valid email.
+                                  </div>
+
+                                  <div class="mb-3">
+  
+                                      <label for="linkedinLink" class="form-label">Linkedin link </label>
+                                      <input type="text" class="form-control"
+                                      name="linkedinLink"
+                                      ngModel
+                                      #linkedinLinkInput="ngModel"
+                                      
+                                      placeholder="Linkedin link">
+                                      </div>
+  
+                           
+          </form>
+      
+        </div>
+        <div class="card-footer text-muted">
+
+              
+          <button
+   [disabled]="createSpeakerForm.invalid"
+   (click)="addSpeaker(createSpeakerForm)"
+   type="submit"
+   class="btn btn-primary"
+   >
+                 
+                 Add Speaker
+                 </button>
+             </div>
+       
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <main class="content">
+            <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <h1 class="h3 d-inline align-middle">Schedule</h1>
+        
+                </div>
+            </div>
+            <div class="col">
+
+                
+            </div>
+        </div>
+        
+               
+        
+        <div class="row">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <div class="row justify-content-between">
+                            <div class="col-10">
+                                <h5 class="card-title mb-0">Schedule</h5>
+                            </div>
+                            <div class="col-2">
+                             
+
+                                <button class="toggle btn btn-primary"
+                                
+                                [ngClass]="{'active': isToggleActive}" 
+                                
+                                > 	<i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                Add session</button>
+                            </div>
+                          </div>
+                        
+                       
+
+                    </div>
+                    <table class="table table-hover  my-0">
+                        <thead>
+                          <tr>
+                            <th>Title</th>
+                            <th>Activity</th>
+                            <th class="d-none d-xl-table-cell"> startTime</th>
+                            <th class="d-none d-xl-table-cell"> endTime</th>
+                            <th class="d-none d-xl-table-cell">description</th>
+                            <th class="d-none d-xl-table-cell">Speaker</th>
+                            <th class="d-none d-sm-table-cell ">Edit</th>
+                            <th class="d-none d-sm-table-cell">Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let session of sessions; let i = index">
+                            <td class="editable" [attr.contenteditable]="editingIndex === i">{{session.title}}</td>
+                            <td class="editable" [attr.contenteditable]="editingIndex === i">{{session.activity}}</td>
+                            <td class="editable" [attr.contenteditable]="editingIndex === i">{{session.startTime}}</td>
+                            <td class="editable" [attr.contenteditable]="editingIndex === i">{{session.endTime}}</td>
+                            <td class="editable" [attr.contenteditable]="editingIndex === i">{{session.description}}</td>
+
+
+
+                            <td class="editable" >
+                              <select class="form-control" [attr.contenteditable]="editingIndex === i" >
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                              </select>
+                            </td>
+                            <td>
+                                
+                              <button class="btn btn-primary btn-sm" *ngIf="editingIndex !== i" (click)="editingIndex = i">Edit</button>
+                              <button class="btn btn-success btn-sm" *ngIf="editingIndex === i" (click)="editingIndex = -1; save(i)">Save</button>
+                            </td>
+                            <td><i class="fa fa-trash" aria-hidden="true"></i>
+                            </td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+                   
+                  
+                </div>
+         
+        </div>
+            </div>
+            </main>
+        
+        
+      

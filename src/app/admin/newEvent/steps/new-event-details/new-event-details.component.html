@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-6">
+        <form #createEventForm="ngForm">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Name </label>
+                <input type="text" required ngModel #eventNameInput="ngModel" name="eventName" class="form-control" placeholder="Event name">
+                <div *ngIf="eventNameInput.touched">
+                    Please enter an event name.
+                    </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput2" class="form-label">Starts at
+                </label>
+                <input type="datetime-local" required ngModel #startInput="ngModel" name="start" id="start"
+                    class="form-control" value="yyyy-mm-ddTh:min">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput3" class="form-label">Ends at</label>
+                <input required ngModel #endInput="ngModel" name="end" type="datetime-local" id="end" name="end"
+                    class="form-control" value="yyyy-mm-ddTh:min">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput4" class="form-label">Description</label>
+                <textarea required ngModel #descriptionInput="ngModel" name="description" id= "description" class="form-control" rows="2"
+                    placeholder="Event description"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="imageCont col-sm-6">
+    </div>
+</div>
+
+<button
+[disabled]="createEventForm.invalid"
+(click)="onButtonClick(createEventForm)"
+type="submit"
+class="btn btn-primary"
+>
+Save and continue
+</button>

@@ -1,0 +1,12 @@
+.btn{
+    height: 35px ;
+    }
+    .no-decoration{
+        background-color: transparent;
+        padding: 0;
+        border: none;
+        }
+
+        .input-group-text {
+            background-color: transparent;
+        }

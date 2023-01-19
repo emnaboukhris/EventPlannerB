@@ -1,0 +1,105 @@
+<main class="content">
+    <div class="container-fluid p-0">
+
+    <div class="mb-3">
+            <h1 class="h3 d-inline align-middle">Sponsors</h1>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <div class="card">
+
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Add Sponsor</h5>
+                    </div>
+                    <div class="mx-5">
+                    <div class="card-body">
+            
+                        <form #createSponsorForm="ngForm">
+                            <div class="profile-pic-wrapper">
+                                  <div class="pic-holder">
+                                    <!-- uploaded pic shown here -->
+                                    <img id="image" class="pic"[src]="imageSrc">
+                                
+                                    <Input class="uploadProfileInput" type="file" name="image" id="newProfilePhoto" accept="image/*" style="opacity: 0;" (change)="uploadFile($event)" />
+                                    <label for="newProfilePhoto" class="upload-file-block">
+                                      <div class="text-center">
+                                        <div class="mb-2">
+                                          <i class="fa fa-camera fa-2x"></i>
+                                        </div>
+                                        <div class="text-uppercase"> Update <br/> logo
+                                        </div>
+                                      </div>
+                                    </label>
+                                  </div>
+                              </div>
+                  
+                         
+                              <div class="form-row">
+                  
+                                      <div class=" col mb-3">
+                                        
+                                          <label for="name" class="form-label">Name </label>
+                                          <input
+                                          required 
+                                          ngModel
+                                          #nameInput="ngModel"
+                                          name="name"
+                                          class="form-control" 
+                                          placeholder="name"
+
+                                          type="text" >
+                                          <div class="alert alert-danger" *ngIf="nameInput.invalid && nameInput.touched"> 
+                                            Please enter the name.
+                                         </div>
+                                        
+                                                        </div>
+                                      <div class=" col mb-3">
+                  
+                                          <label for="lastname" class="form-label">Website </label>
+                                          <input
+                                          #websiteInput="ngModel"
+                                          name="website"
+                                          placeholder="website"
+                                          required 
+                                          ngModel
+                                          class="form-control" 
+                                          type="text" 
+                                          >
+                                          <div class="alert alert-danger" *ngIf="websiteInput.invalid && websiteInput.touched"> 
+                                            Please enter the website.
+                                         </div>
+                                                     
+                                        </div>
+                                      </div>
+                                             
+                                          
+                  
+                                           
+                          </form>
+                          <div class="card-footer text-muted">
+
+                              
+                       <button
+[disabled]="createSponsorForm.invalid"
+(click)="addSponsor(createSponsorForm)"
+type="submit"
+class="btn btn-primary"
+>
+                              
+                              Add Speaker
+                              </button>
+                          </div>
+                    
+                    </div>
+                    </div>
+
+                </div>
+
+
+                
+            </div>
+
+        </div>
+
+    </div>
+</main>

@@ -1,0 +1,180 @@
+<
+
+<main class="content">
+    <div class="container-fluid p-0">
+
+    <div class="mb-3">
+            <h1 class="h3 d-inline align-middle">Speakers</h1>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <div class="card">
+
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Update Speaker</h5>
+                    </div>
+                    <div class="mx-5">
+                    <div class="card-body">
+            
+                        <form   
+                        #createSpeakerForm="ngForm">
+                            <div class="profile-pic-wrapper">
+                                  <div class="pic-holder">
+                                    <!-- uploaded pic shown here -->
+                                    <img id="image" class="pic"[src]="imageSrc">
+                                
+                                    <Input class="uploadProfileInput" type="file" name="image" id="newProfilePhoto" accept="image/*" style="opacity: 0;" (change)="uploadFile($event)" />
+                                    <label for="newProfilePhoto" class="upload-file-block">
+                                      <div class="text-center">
+                                        <div class="mb-2">
+                                          <i class="fa fa-camera fa-2x"></i>
+                                        </div>
+                                        <div class="text-uppercase"> Update <br/> Profile Photo
+                                        </div>
+                                      </div>
+                                    </label>
+                                  </div>
+                              </div>
+                  
+                         
+                              <div class="form-row">
+                  
+                                      <div class=" col mb-3">
+                                        
+                                          <label for="lastname" class="form-label">Firstname </label>
+                                          <input
+                                          required 
+                                          ngModel
+                                          #firstnameInput="ngModel"
+                                          name="firstName"
+                                          class="form-control" 
+                                          placeholder="firstName"
+
+                                          type="text" >
+                                          <div class="alert alert-danger" *ngIf="firstnameInput.invalid && firstnameInput.touched"> 
+                                            Please enter the firstname.
+                                         </div>
+                                        
+                                                        </div>
+                                      <div class=" col mb-3">
+                  
+                                          <label for="lastname" class="form-label">Lastname </label>
+                                          <input
+                                          #lastnameInput="ngModel"
+                                          name="lastName"
+                                          placeholder="lastName"
+                                          required 
+                                          ngModel
+                                          class="form-control" 
+                                          type="text" 
+                                          >
+                                          <div class="alert alert-danger" *ngIf="lastnameInput.invalid && lastnameInput.touched"> 
+                                            Please enter the lastname.
+                                         </div>
+                                                     
+                                        </div>
+                                      </div>
+                                              <div class="form-row">
+                                                  <div class=" col mb-3">
+                              
+                                                      <label for="job" class="form-label">Job </label>
+                                                      <input 
+                                                      required 
+                                                      name="job"
+                                                      ngModel
+                                                      #jobInput="ngModel"
+                                                      class="form-control" 
+                                                      type="text" 
+                                                      placeholder="Job"
+                                                      
+                                                      >
+                                                      <div class="alert alert-danger" *ngIf="jobInput.invalid && jobInput.touched"> 
+                                                        Please enter the job.
+                                                     </div>
+
+                                                                    </div>
+
+
+
+                                                  <div class=" col mb-3">
+                              
+                                                      <label for="job" class="form-label">Company </label>
+                                                      <input type="text" 
+                                                      class="form-control" 
+                                                      placeholder="Company"
+                                                      name="job"
+                                                      ngModel
+                                                      #companyInput="ngModel"
+                                                      
+                                                      >
+                                                                         </div>
+                                            </div>
+                                          
+                  
+                                                  <div class="mb-3">
+                  
+                                                      <label for="description" class="form-label">Description</label>
+                                                      <textarea class="form-control"
+                                                      name="description"
+                                                      ngModel
+                                                      #descriptionInput="ngModel"                                                      
+                                                      rows="2" placeholder="Description">
+                                                    </textarea>
+                                                  </div>
+                                                <div class="mb-3">
+                  
+                                                  <label for="email"
+                                                   class="form-label"> Email </label>
+                                                  <input type="email" 
+                                                  name="email"
+                                                  ngModel
+                                                  #emailInput="ngModel"
+                                                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                                  class="form-control"
+                                                  
+                                                  placeholder="exemple@gmail.com ">
+                                                  </div>
+                                                  <div class="alert alert-danger" *ngIf="emailInput.invalid && emailInput.touched"> 
+                                                    Please enter a valid email.
+                                                  </div>
+        
+                                                  <div class="mb-3">
+                  
+                                                      <label for="linkedinLink" class="form-label">Linkedin link </label>
+                                                      <input type="text" class="form-control"
+                                                      name="linkedinLink"
+                                                      ngModel
+                                                      #linkedinLinkInput="ngModel"
+                                                      
+                                                      placeholder="Linkedin link">
+                                                      </div>
+                  
+                                           
+                          </form>
+                          <div class="card-footer text-muted">
+
+                              
+                       <button
+[disabled]="createSpeakerForm.invalid"
+(click)="updateSpeaker()"
+type="submit"
+class="btn btn-primary"
+>
+                              
+                              Add Speaker
+                              </button>
+                          </div>
+                    
+                    </div>
+                    </div>
+
+                </div>
+
+
+                
+            </div>
+
+        </div>
+
+    </div>
+</main>

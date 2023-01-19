@@ -1,0 +1,58 @@
+.col-sm{
+    align-items: start;
+  }
+  
+  .col-md-2 > img {
+  padding: 10px;
+height: 150px;
+width: 150px;
+  }
+
+
+  .drop_box {
+    padding: 30px;
+    height: 140px;
+    width: 140px;
+    border: 3px dotted #a3a3a3;
+  }
+  
+.list-group-item {
+padding: 24px;
+margin: 10px;
+
+}
+
+.picture-container {
+    position: relative;
+  }
+  
+  .upload-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px dotted #fff;
+    color: #fff;
+    font-size: 20px;
+  }
+
+
+  .picture-container {
+    position: relative;
+  }
+  
+  .upload-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px dotted #fff;
+    color: #fff;
+    font-size: 20px;
+  }

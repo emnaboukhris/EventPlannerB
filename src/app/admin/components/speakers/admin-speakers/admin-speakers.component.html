@@ -1,0 +1,86 @@
+
+        <main class="content">
+            <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <h1 class="h3 d-inline align-middle">Speakers</h1>
+        
+                </div>
+            </div>
+            <div class="col">
+
+                
+            </div>
+        </div>
+        
+               
+        
+        <div class="row">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <div class="row justify-content-between">
+                            <div class="col-10">
+                                <h5 class="card-title mb-0">List Speakers</h5>
+                            </div>
+                            <div class="col-2">
+                             
+
+                                <button class="toggle btn btn-primary" (click)="addOption()"> 	<i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                  Add Speaker</button>
+                            </div>
+                          </div>
+                        
+                       
+
+                    </div>
+                    <div class="table-responsive">
+
+                    <table class="table table-hover  my-0">
+                        <thead>
+                          <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th class="d-none d-xl-table-cell">Description</th>
+                            <th class="d-none d-xl-table-cell">Job</th>
+                            <th class="d-none d-sm-table-cell ">Company</th>
+                            <th class="d-none d-sm-table-cell"> Email</th>
+                            <th class="d-none d-sm-table-cell"> linkedin </th>
+                            <th class="d-none d-sm-table-cell"> Edit</th>
+                            <th class="d-none d-sm-table-cell"> Delete</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let speaker of speakers; let i = index">
+                            <td class="w-10">
+                                <img src={{speaker.image}} class="img-fluid img-thumbnail" alt="Sheep">
+                            </td>
+                            <td class="editable">{{speaker.firstName}} {{speaker.lastName}}</td>
+                            <td class="editable" >{{speaker.description}}</td>
+                            <td class="editable" >{{speaker.job}}</td>
+                            <td class="editable" >{{speaker.company}}</td>
+                            <td class="editable" >{{speaker.email}}</td>
+                            <td class="editable" >{{speaker.linkedinLink}}</td>
+
+                            <td>
+                              <button class="no-decoration"  (click)="update(speaker.id)"><i class="icon-edit"></i> 
+                              </button>
+                            </td>
+                            <td>
+                              <button class="no-decoration"  (click)="delete(speaker.id)"><i class="fa fa-trash" aria-hidden="true" ></i> 
+                              </button>
+                              
+                            </td>
+
+                          </tr>
+                        </tbody>
+                      </table>
+                   
+                    </div>
+                </div>
+         
+        </div>
+            </div>
+            </main>
+        

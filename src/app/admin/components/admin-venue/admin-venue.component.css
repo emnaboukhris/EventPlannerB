@@ -1,0 +1,48 @@
+.sidebar-form {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: right 0.3s ease-in-out;
+  }
+  
+  .sidebar-form.active {
+    right: 0;
+  }
+  
+  .sidebar-form.active + .open-button {
+    display: none;
+  }
+  
+  .open-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  body.sidebar-open {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  

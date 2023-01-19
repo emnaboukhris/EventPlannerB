@@ -1,0 +1,125 @@
+<div class="wrapper">
+
+     
+     <div class="main">
+    <app-admin-navbar></app-admin-navbar>
+
+
+
+    <main class="content">
+        <div class="container-fluid p-0">
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                <h1 class="h3 d-inline align-middle">Admin's Organization events</h1>
+    
+            </div>
+        </div>
+        <div class="col">
+
+            
+        </div>
+    </div>
+    
+
+    
+    <div class="row">
+            <div class="card flex-fill">
+                <div class="card-header">
+                    <div class="row pb-3 ">
+                        <div class="col-10">
+                            <h5 class="card-title mb-0">My Events</h5>
+                        </div>
+                    </div>
+
+                        <div class="row justify-content-between">
+
+                            <div class="col-4 align-items-start ">
+                                <div class="input-group rounded">
+                                    <input [(ngModel)]="searchTerm"  placeholder="Search..."  class="form-control">
+                                    <span class="input-group-text border-0" id="search-addon">
+                                        <i class="fa fa-search" aria-hidden="true"></i>                                    </span>
+                                  </div>
+                                 </div>
+                                 <div class="col-2 ">
+                         
+
+                                    <button class="toggle btn btn-primary" (click)="addOption()"> <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        
+                                        New Event </button>
+                                </div>
+                     
+                     
+                      </div>
+                    
+                   
+
+                </div>
+                <div class="table-responsive">
+
+                <table class="table table-hover  my-0">
+                    <thead>
+                      <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th class="d-none d-xl-table-cell">dates</th>
+                        <th class="d-none d-xl-table-cell">registrations</th>
+                        <th class="d-none d-xl-table-cell">status</th>
+                        
+                        <th class="d-none d-sm-table-cell"> Edit</th>
+                        <th class="d-none d-sm-table-cell"> Delete</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let event of events | filter:'title':searchTerm| paginate: { itemsPerPage: 4, currentPage: p }; let i = index ">
+                        <td class="w-10">
+                            <img src="" class="img-fluid img-thumbnail" alt="Sheep">
+                        </td>
+                        <td class="editable">{{event.title}}</td>
+                        <td class="editable" >{{event.dates}}</td>
+                        <td class="editable" >{{event.registrations}}</td>
+                        <td class="editable" >{{event.status}}</td>        
+                        <td>  
+                          <button class="no-decoration"  (click)="update(event.id)"><i class="icon-edit"></i> </button>
+                        </td>
+                        <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                      </tr>
+                    </tbody>          
+                  </table>
+                
+
+               
+                </div>
+                <div class="my-3 ">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                  </div> 
+            </div>
+     
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+    
+        </div>
+        </main>
+        <app-admin-footer></app-admin-footer>
+      </div>
+  
+   
