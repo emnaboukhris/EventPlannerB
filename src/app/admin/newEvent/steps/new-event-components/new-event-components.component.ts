@@ -11,7 +11,7 @@ import { Event } from 'src/app/models/Event';
   styleUrls: ['./new-event-components.component.css']
 })
 export class NewEventComponentsComponent implements OnInit {
-  event! : any ;  
+  event : any ;  
 
   constructor(
 

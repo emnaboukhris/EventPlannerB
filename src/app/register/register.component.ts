@@ -13,6 +13,9 @@ export class RegisterComponent implements OnInit {
   constructor(private authService : AuthService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    if(this.authService.isAuthenticated()){
+      this.router.navigate(['admin']);
+    }
   }
 
    onButtonClick(formulaire: NgForm):void {
@@ -26,4 +29,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  onButtonClickLogin(){
+    this.router.navigate(['login']);
+  }
 }

@@ -19,46 +19,53 @@ import { EventListComponent } from "./admin/newEvent/event-list/event-list.compo
 import { TemplateComponent } from "./admin/newEvent/steps/template/template.component";
 import { NewEventDetailsComponent } from "./admin/newEvent/steps/new-event-details/new-event-details.component";
 import { NewEventComponentsComponent } from "./admin/newEvent/steps/new-event-components/new-event-components.component";
-
+import { AuthGuard } from "./guards/auth.guard";
+import { AdminAddSopnsorComponent } from "./admin/components/sponsors/admin-add-sopnsor/admin-add-sopnsor.component";
+import { AdminUpdateSopnsorComponent } from "./admin/components/sponsors/admin-update-sopnsor/admin-update-sopnsor.component";
+import { OverViewComponent } from "./over-view/over-view.component";
+import { PublishEventComponent } from "./publish-event/publish-event.component";
 
 const APP_ROUTING : Routes = [
-    {path:'',component:EventListComponent },
+    {path:'',component:OverViewComponent },
+    {path:'publishEvent/:id',component:PublishEventComponent },
     {path: 'register', component:RegisterComponent},
     {path: 'login', component:LoginComponent},
 
-    {path:'admin',children :[
-        {path:'',component:EventListComponent },
+    {path:'admin', canActivate: [AuthGuard] ,children :[
+        {path:'',component:EventListComponent, canActivate: [AuthGuard]  },
 
         {
             
-            path:'events' ,   children : [
-           {path: 'create-event', component:CreateNewEventComponent  , children :[
-            {path:'template',component:TemplateComponent}, 
-            {path:'new',component:NewEventDetailsComponent}, 
-            {path:'components',component:NewEventComponentsComponent}, 
+            path:'events' ,   canActivate: [AuthGuard] , children : [
+           {path: 'create-event', component:CreateNewEventComponent, canActivate: [AuthGuard] , children :[
+            {path:'template',component:TemplateComponent,  canActivate: [AuthGuard] }, 
+            {path:'new',component:NewEventDetailsComponent,  canActivate: [AuthGuard] }, 
+            {path:'components',component:NewEventComponentsComponent,  canActivate: [AuthGuard] }, 
 
 
            ]} , 
-           {path: ':idEvent', component: AdminBaseLayoutComponent, 
+           {path: ':idEvent', component: AdminBaseLayoutComponent, canActivate: [AuthGuard] , 
            children: [
-            {path:'',component:AdminProfileComponent}, 
-            {path:'aftedelete',component:AdminProfileComponent}, 
+            {path:'',component:AdminProfileComponent,  canActivate: [AuthGuard] }, 
+            {path:'aftedelete',component:AdminProfileComponent,  canActivate: [AuthGuard] }, 
 
-           {path:'overview',component:AdminProfileComponent}, 
-           {path:'profile',component:AdminProfileComponent }, 
-           {path:'event',component:AdminEventComponent }, 
-           {path:'details',component:AdminDetailsComponent}, 
-           {path:'schedule',component:AdminScheduleComponent},
-           {path:'pricing',component:AdminPricingComponent}, 
+           {path:'overview',component:AdminProfileComponent, canActivate: [AuthGuard] }, 
+           {path:'profile',component:AdminProfileComponent,  canActivate: [AuthGuard]  }, 
+           {path:'event',component:AdminEventComponent, canActivate: [AuthGuard]  }, 
+           {path:'details',component:AdminDetailsComponent, canActivate: [AuthGuard] }, 
+           {path:'schedule',component:AdminScheduleComponent, canActivate: [AuthGuard] },
+           {path:'pricing',component:AdminPricingComponent, canActivate: [AuthGuard] }, 
            {path:'speakers',children :[ 
-           {path:'',component:AdminSpeakersComponent}, 
-           {path:'add',component:AdminAddSpeakerComponent}, 
-           {path:'update/:id',component:AdminUpdateSpeakerComponent}, 
-
-
+           {path:'',component:AdminSpeakersComponent, canActivate: [AuthGuard] }, 
+           {path:'add',component:AdminAddSpeakerComponent, canActivate: [AuthGuard] }, 
+           {path:'update/:id',component:AdminUpdateSpeakerComponent, canActivate: [AuthGuard] }, 
     ]
-        }, 
-
+        },
+        {path:'sponsors',children :[ 
+            {path:'',component:AdminSopnsorsComponent, canActivate: [AuthGuard] }, 
+            {path:'add',component:AdminAddSopnsorComponent, canActivate: [AuthGuard] }, 
+            {path:'update/:id',component:AdminUpdateSopnsorComponent, canActivate: [AuthGuard] },
+        ]} 
 ]} , 
 
 

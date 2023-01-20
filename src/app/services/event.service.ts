@@ -14,6 +14,10 @@ export class EventService {
     return this.http.post<Event[]>(`${APIS.event}/all`,{"id":localStorage.getItem('t')})
   }
   
+  public getEventsAll():Observable<Event[]>{
+    return this.http.get<Event[]>(`${APIS.event}`);
+  }
+
   public getEventById(id :number):Observable<Event>{
     return this.http.post<Event>(`${APIS.event}/one`,{"id":id})
   }
@@ -22,8 +26,10 @@ export class EventService {
     return this.http.put<Event>(`${APIS.event}`,formData)
   }
   
-  public addEvent(formData: Event):Observable<Event>{
-    return this.http.post<Event>(`${APIS.event}`,formData)
+  public addEvent(formData: any):Observable<Event>{
+    let reqBody = {...formData, organizer: localStorage.getItem('t')};
+    console.log("this is the data sent with the event created.", reqBody);
+    return this.http.post<Event>(`${APIS.event}`,reqBody);
   }
   
   public deleteEvent(eventId : number ):Observable<void>{

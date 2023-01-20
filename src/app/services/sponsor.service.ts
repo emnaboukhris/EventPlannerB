@@ -27,8 +27,8 @@ public addSponsor(formData: Sponsor ):Observable<Sponsor>{
   return this.http.post<Sponsor>(`${APIS.sponsors}`,formData)
 }
 
-public deleteSponsor(eventId : number,id: number ):Observable<void>{
-  return this.http.delete<void>(`${APIS.sponsors}/${eventId}/${id}`)
+public deleteSponsor(id: number ):Observable<void>{
+  return this.http.delete<void>(`${APIS.sponsors}/${id}`)
 }
 
 

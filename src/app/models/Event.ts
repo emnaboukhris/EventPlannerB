@@ -8,6 +8,7 @@ import { Venue } from "./Venue";
 
 export class Event{
     id:number;
+    image : string;
     title:string;
     description:string;
     organizer:string;
@@ -21,8 +22,9 @@ export class Event{
     tickets:Array<Ticket>;
     staff:Array<Staff>;
 
-    constructor(id:number,title:string,description:string,organizer:string,dateStart:Date,dateEnd:Date,venue=Venue,speakers:Array<Speaker>,attendees:Array<Attendee>,schedule:Schedule,tickets:Array<Ticket>,sponsors:Array<Sponsor>,staff:Array<Staff>){
+    constructor(id:number, image: string, title:string,description:string,organizer:string,dateStart:Date,dateEnd:Date,venue=Venue,speakers:Array<Speaker>,attendees:Array<Attendee>,schedule:Schedule,tickets:Array<Ticket>,sponsors:Array<Sponsor>,staff:Array<Staff>){
 this.id=id;
+this.image = image;
 this.title=title;
 this.description=description;
 this.organizer=organizer;

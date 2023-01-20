@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit(): void {
+    if(this.authService.isAuthenticated()){
+      this.router.navigate(['admin']);
+    }
   }
 
   onButtonClick(formulaire: NgForm): void {
@@ -39,5 +42,9 @@ export class LoginComponent implements OnInit {
       //this.toaster.error('Something went wrong. Please check the credentials that you provided and make sure they are correct.');
     });
 
+  }
+
+  onButtonClickRegister(){
+    this.router.navigate(['register']);
   }
 }

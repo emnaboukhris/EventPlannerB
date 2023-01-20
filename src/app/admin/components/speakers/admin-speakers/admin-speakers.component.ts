@@ -70,7 +70,10 @@ export class AdminSpeakersComponent implements OnInit {
         console.log("params :" , params['idEvent'])
       this.eventId =params['idEvent'] ; 
       this.speakerService.getSpeakers(+this.eventId).subscribe((speakers: Speaker[]) => {
-      this.speakers = speakers ; 
+      this.speakers = speakers;
+      this.speakers.forEach((speaker:Speaker,index:number)=>{
+        speaker.image = 'assets/images/speakers/speaker'+((index % 9)+1)+'.jpg';
+      }) 
       }) ; 
 
       },

@@ -4,14 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SpeakersListComponent } from './home/speakers/speakers-list/speakers-list.component';
-import { SpeakersItemComponent } from './home/speakers/speakers-item/speakers-item.component';
 import { AboutComponent } from './home/about/about.component';
 import { ContactComponent } from './home/contact/contact.component';
 import { VenueComponent } from './home/venue/venue.component';
 import { PricingListComponent } from './home/pricing/pricing-list/pricing-list.component';
 import { PricingItemComponent } from './home/pricing/pricing-item/pricing-item.component';
-import { ScheduleComponent } from './home/schedule/schedule.component';
 import { BannerComponent } from './home/banner/banner.component';
 import { BlogComponent } from './home/blog/blog.component';
 import { SponsorsComponent } from './home/sponsors/sponsors.component';
@@ -20,10 +17,10 @@ import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from './footer/footer.component';
 import { DetailsComponent } from './home/details/details.component';
 import { IntroCardComponent } from './home/intro/intro-card/intro-card.component';
-import { AdminSidebarComponent } from "./admin/layout/admin-sidebar/admin-sidebar.component";
 import { AdminNavbarComponent } from "./admin/layout/admin-navbar/admin-navbar.component";
 import { AdminDetailsComponent } from "./admin/components/admin-details/admin-details.component";
 import { AdminFooterComponent } from "./admin/layout/admin-footer/admin-footer.component";
+import { AdminSidebarComponent } from './admin/layout/admin-sidebar/admin-sidebar.component';
 import { AdminBaseLayoutComponent } from './admin/layout/admin-base-layout/admin-base-layout.component';
 import { AdminProfileComponent } from './admin/components/admin-profile/admin-profile.component';
 import { ROUTING } from './app.routing';
@@ -55,26 +52,35 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {  HTTP_INTERCEPTORS } from '@angular/common/http';
+import { OverViewComponent } from './over-view/over-view.component';
+import { SpeakersItemComponent } from './home/speakers/speakers-item/speakers-item.component';
+import { SpeakersListComponent } from './home/speakers/speakers-list/speakers-list.component';
+import { ScheduleComponent } from './home/schedule/schedule.component';
+import { PublishEventComponent } from './publish-event/publish-event.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
+        AdminSpeakersComponent,
+        SpeakersItemComponent,
+        SpeakersListComponent,
+        ScheduleComponent,
+        PublishEventComponent,
+        OverViewComponent,
         AdminEventComponent,
         EventListComponent,
+        AdminSidebarComponent,
         NewEventComponentsComponent,
         CreateNewEventComponent,
         EventObjectifComponent,
         NewEventDetailsComponent,
-        SpeakersListComponent,
-        SpeakersItemComponent,
         TemplateComponent,
         AboutComponent,
         ContactComponent,
         VenueComponent,
         PricingListComponent,
         PricingItemComponent,
-        ScheduleComponent,
         BannerComponent,
         BlogComponent,
         SponsorsComponent,
@@ -83,13 +89,12 @@ import {  HTTP_INTERCEPTORS } from '@angular/common/http';
         FooterComponent,
         DetailsComponent,
         IntroCardComponent,
-        AdminSidebarComponent,
         AdminNavbarComponent,
         AdminDetailsComponent,
         AdminFooterComponent,
         AdminBaseLayoutComponent,
         AdminProfileComponent,
-        AdminScheduleComponent, AdminAddSpeakerComponent, AdminUpdateSpeakerComponent, AdminSpeakersComponent, EventCreationBaseLayoutComponent,
+        AdminScheduleComponent, AdminAddSpeakerComponent, AdminUpdateSpeakerComponent, EventCreationBaseLayoutComponent,
          FilterPipe,
         AdminAddSopnsorComponent,
         AdminUpdateSopnsorComponent,
@@ -99,7 +104,6 @@ import {  HTTP_INTERCEPTORS } from '@angular/common/http';
 
     ],
     providers: [
-
         EventsService,
         AuthService,
         AuthGuard,

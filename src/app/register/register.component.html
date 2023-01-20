@@ -1,79 +1,124 @@
 <main class="d-flex w-100">
-   <div class="container d-flex flex-column">
-      <div class="row vh-100">
-         <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
-            <div class="d-table-cell align-middle">
+  <div class="container d-flex flex-column">
+    <div class="row vh-100">
+      <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+        <div class="d-table-cell align-middle">
+          <div class="text-center mt-4">
+            <h1 class="h2">Get started</h1>
+            <p class="lead">
+              Start creating the best possible user experience for you
+              customers.
+            </p>
+          </div>
 
-               <div class="text-center mt-4">
-                  <h1 class="h2">Get started</h1>
-                  <p class="lead">
-                     Start creating the best possible user experience for you customers.
-                  </p>
-               </div>
-
-               <div class="card">
-                  <div class="card-body">
-                     <div class="m-sm-4">
-                        <form #register="ngForm">
-                           <div class="mb-3">
-                              <label class="form-label">Firstname</label>
-                              <input class="form-control form-control-lg" ngModel #firstName="ngModel" required type="text" name="firstName" placeholder="Enter your name" />
-                           </div>
-                           <div class="mb-3">
-                              <label class="form-label">Lastname</label>
-                              <input class="form-control form-control-lg" required ngModel #lastName="ngModel" type="text" name="lastName" placeholder="Enter your name" />
-                           </div> 
-                           <div class="mb-3">
-                              <label class="form-label">Email</label>
-                              <input
-                                required
-                                type="email"
-                                ngModel
-                                #emailInput="ngModel"
-                                email
-                                name="email"
-                                class="form-control"
-                                id="exampleInputEmail1"
-                                aria-describedby="emailHelp"
-                                placeholder="Enter email"
-                              />
-                           </div>
-                           <div
-                           *ngIf="emailInput.invalid && emailInput.dirty"
-                           class="alert alert-danger">
-                           Please enter a valid email address.
-                           </div>
-                           <div class="mb-3">
-                              <label class="form-label">Password</label>
-                              <input class="form-control form-control-lg" 
-                              minlength="4" required ngModel #password="ngModel" type="password" name="password" placeholder="Enter password" />
-                           </div>
-                           <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
-                              Please enter a valid password. At least 4 caracters.
-                           </div>
-                           <label class="form-check">
-                              <input class="form-check-input" ngModel #organizer="ngModel" name="organizer" type="checkbox" value="">
-                              <span class="form-check-label">
-                              Sign up as an Event Organizer?
-                              </span>
-                          </label>
-                           <div class="text-center mt-3">
-                              <br>
-                              <button
-                              [disabled]="register.invalid"
-                              (click)="onButtonClick(register)"
-                              type="submit"
-                              class="btn btn-primary">
-                              Sign up
-                          </button>
-                           </div>
-                        </form>
-                     </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="m-sm-4">
+                <form #register="ngForm">
+                  <div class="mb-3">
+                    <label class="form-label">Firstname</label>
+                    <input
+                      class="form-control form-control-lg"
+                      ngModel
+                      #firstName="ngModel"
+                      required
+                      type="text"
+                      name="firstName"
+                      placeholder="Enter your name"
+                    />
                   </div>
-               </div>
-
+                  <div class="mb-3">
+                    <label class="form-label">Lastname</label>
+                    <input
+                      class="form-control form-control-lg"
+                      required
+                      ngModel
+                      #lastName="ngModel"
+                      type="text"
+                      name="lastName"
+                      placeholder="Enter your name"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input
+                      required
+                      type="email"
+                      ngModel
+                      #emailInput="ngModel"
+                      email
+                      name="email"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email"
+                    />
+                  </div>
+                  <div
+                    *ngIf="emailInput.invalid && emailInput.dirty"
+                    class="alert alert-danger"
+                  >
+                    Please enter a valid email address.
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input
+                      class="form-control form-control-lg"
+                      minlength="4"
+                      required
+                      ngModel
+                      #password="ngModel"
+                      type="password"
+                      name="password"
+                      placeholder="Enter password"
+                    />
+                  </div>
+                  <div
+                    *ngIf="password.invalid && password.dirty"
+                    class="alert alert-danger"
+                  >
+                    Please enter a valid password. At least 4 caracters.
+                  </div>
+                  <label class="form-check">
+                    <input
+                      class="form-check-input"
+                      ngModel
+                      #organizer="ngModel"
+                      name="organizer"
+                      type="checkbox"
+                      value=""
+                    />
+                    <span class="form-check-label">
+                      Sign up as an Event Organizer?
+                    </span>
+                  </label>
+                  <div class="text-center row my-4 align-content-center">
+                    <div class="col-2 px-3">
+                      <button
+                        [disabled]="register.invalid"
+                        (click)="onButtonClick(register)"
+                        type="submit"
+                        class="btn btn-primary"
+                      >
+                        Sign up
+                      </button>
+                    </div>
+                    <div class="col-2 px-3">
+                      <button
+                        (click)="onButtonClickLogin()"
+                        type="submit"
+                        class="btn btn-success"
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-         </div>
+          </div>
+        </div>
       </div>
-   </div>
+    </div>
+  </div>
 </main>

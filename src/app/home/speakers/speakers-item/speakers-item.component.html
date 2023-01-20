@@ -1,15 +1,15 @@
 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="delay">
     <div class="ts-speaker">
        <div class="speaker-img">
-          <img class="img-fluid" src="assets/images/speakers/speaker1.jpg" alt="">
+          <img class="img-fluid" src={{speaker.image}} alt="">
           <a href="#popup_1" class="view-speaker ts-image-popup" data-effect="mfp-zoom-in">
                       <i class="icon icon-plus"></i>
                   </a>
        </div>
        <div class="ts-speaker-info">
-          <h3 class="ts-title"><a href="#">Fredric Martinsson</a></h3>
+          <h3 class="ts-title">{{speaker.firstName}}  {{speaker.lastName}}</h3>
           <p>
-             Founder, Edilta
+             {{speaker.job}}, {{speaker.company}}
           </p>
        </div>
     </div>
@@ -18,20 +18,19 @@
        <div class="row">
           <div class="col-lg-6">
              <div class="ts-speaker-popup-img">
-                <img src="assets/images/speakers/speaker1.jpg" alt="">
+                <img src={{speaker.image}} alt="">
              </div>
           </div><!-- col end-->
           <div class="col-lg-6">
              <div class="ts-speaker-popup-content">
-                <h3 class="ts-title">David Robert</h3>
-                <span class="speakder-designation">Cheif Architecture</span>
-                <img class="company-logo" src="assets/images/sponsors/sponsor-6.png" alt="">
+                <h3 class="ts-title">{{speaker.firstName}}  {{speaker.lastName}}</h3>
+                <span class="speakder-designation">{{speaker.job}}</span>
+                <img class="company-logo" src={{speaker.image}} alt="">
                 <p>
-                   World is committed to making participation in the event a harass ment free experience
-                   for everyone, regardless of level experience gender, gender identity and expression
+                  {{speaker.description}}
                 </p>
                 <h4 class="session-name">
-                   Sessions by David
+                   Sessions by {{speaker.firstName}} 
                 </h4>
                 <div class="row">
                    <div class="col-lg-6">
@@ -61,7 +60,6 @@
                    <a href="#"><i class="fa fa-facebook"></i></a>
                    <a href="#"><i class="fa fa-twitter"></i></a>
                    <a href="#"><i class="fa fa-instagram"></i></a>
-                   <a href="#"><i class="fa fa-google-plus"></i></a>
                    <a href="#"><i class="fa fa-linkedin"></i></a>
                 </div>
              </div><!-- ts-speaker-popup-content end-->

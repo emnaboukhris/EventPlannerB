@@ -32,8 +32,9 @@ export class AdminSopnsorsComponent implements OnInit {
    
      delete(id: number) {
  
-       this.sponsorService.deleteSponsor(+this.eventId,id).subscribe((res) => {
+       this.sponsorService.deleteSponsor(id).subscribe((res) => {
          console.log("deleted with success")
+         this.ngOnInit();
        }, (error)=> {
          console.log("can't delete")
  
@@ -59,7 +60,11 @@ export class AdminSopnsorsComponent implements OnInit {
          console.log("params :" , params['idEvent'])
        this.eventId =params['idEvent'] ; 
        this.sponsorService.getSponsors(+this.eventId).subscribe((sponsors: Sponsor[]) => {
- this.sponsors = sponsors ; 
+       this.sponsors = sponsors ; 
+       this.sponsors.forEach((sponsor:Sponsor,index:number)=>{
+        sponsor.logo = 'assets/images/sponsors/sponsor-'+((index % 8)+1)+'.png'
+       })
+
        }) ; 
  
        },

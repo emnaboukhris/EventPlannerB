@@ -49,15 +49,24 @@
                                Event Organizer Account
                                </span>
                            </label>
-                            <div class="text-center mt-3">
-                               <br>
-                               <button
+                            <div class="text-center row my-4 align-content-center">
+                              <div class="col-2 px-3"> 
+                              <button
                                [disabled]="login.invalid"
                                (click)="onButtonClick(login)"
                                type="submit"
                                class="btn btn-primary">
                                Log in
                            </button>
+                        </div>
+                        <div class="col-2 px-3">
+                           <button
+                               (click)="onButtonClickRegister()"
+                               type="submit"
+                               class="btn btn-success">
+                               Register
+                           </button>
+                        </div>
                             </div>
                          </form>
                          <br>

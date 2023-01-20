@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/models/Event';
+import { CurrentUserService } from 'src/app/services/current-user.service';
 import { EventService } from 'src/app/services/event.service';
 
 @Component({
@@ -18,7 +19,8 @@ events! : Event[] ;
   constructor(
     private router :Router , 
     private eventService : EventService , 
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private currentUserService : CurrentUserService
     ) { }
   
   
@@ -48,7 +50,6 @@ events! : Event[] ;
 
       }
   ngOnInit(): void {
-
     this.eventService.getEvents().subscribe(
   (events)=> {
     this.events = events 

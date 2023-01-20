@@ -6,6 +6,7 @@ import { TokenService } from './token.service';
 import { CurrentUserService } from './current-user.service';
 import { User } from '../models/User';
 import { Admin } from '../models/admin';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class AuthService {
 
   constructor(private http: HttpClient,
      private tokenService: TokenService,
-     private currentUserService: CurrentUserService
+     private currentUserService: CurrentUserService,
+     private router: Router
      ) { }
 
 
@@ -53,12 +55,20 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean{
-    if(localStorage.getItem("access_token")!=""){
+    if(localStorage.getItem("access_token")!== null){
       return true;
     }
     else{
       return false;
     }
+  }
+
+  logout() {
+    //remove the access token from local storage
+    localStorage.removeItem('access_token');
+    //navigate to login
+    this.router.navigate(['/login']);
+    
   }
 
 }

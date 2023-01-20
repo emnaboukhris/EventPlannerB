@@ -1,8 +1,10 @@
-<nav class="navbar navbar-expand navbar-light navbar-bg">
-    <a class="sidebar-toggle js-sidebar-toggle">
-      <i class="hamburger align-self-center"></i>
-    </a>
 
+
+    <div *ngIf="isAuthenticated; else elseBlock">
+      <nav class="navbar navbar-expand navbar-light navbar-bg">
+        <a class="sidebar-toggle js-sidebar-toggle">
+          <i class="hamburger align-self-center"></i>
+        </a>
     <div class="navbar-collapse collapse">
       <ul class="navbar-nav navbar-align">
         <li class="nav-item dropdown">
@@ -98,7 +100,7 @@
               <a href="#" class="list-group-item">
                 <div class="row g-0 align-items-center">
                   <div class="col-2">
-                    <img src="img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="William Harris">
+                    <img src="assets/img/avatars/avatar-2.jpg" class="avatar img-fluid rounded-circle" alt="William Harris">
                   </div>
                   <div class="col-10 ps-2">
                     <div class="text-dark">William Harris</div>
@@ -110,7 +112,7 @@
               <a href="#" class="list-group-item">
                 <div class="row g-0 align-items-center">
                   <div class="col-2">
-                    <img src="img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Christina Mason">
+                    <img src="assets/img/avatars/avatar-4.jpg" class="avatar img-fluid rounded-circle" alt="Christina Mason">
                   </div>
                   <div class="col-10 ps-2">
                     <div class="text-dark">Christina Mason</div>
@@ -122,7 +124,7 @@
               <a href="#" class="list-group-item">
                 <div class="row g-0 align-items-center">
                   <div class="col-2">
-                    <img src="img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
+                    <img src="assets/img/avatars/avatar-3.jpg" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
                   </div>
                   <div class="col-10 ps-2">
                     <div class="text-dark">Sharon Lessman</div>
@@ -143,18 +145,29 @@
           </a>
 
           <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-            <img src="assets/images/avatar/my-user.png" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">{{user.firstName}} {{user.lastName}}</span>
+            <img src="assets/images/avatar/my-user.png" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">{{user?.firstName}} {{user?.lastName}}</span>
           </a>
           <div class="dropdown-menu dropdown-menu-end">
-            <a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-            <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+            <a class="dropdown-item" routerLink="/admin"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+            <a class="dropdown-item" routerLink="/"><i class="align-middle me-1" data-feather="pie-chart"></i> Check All Events</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-            <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+            <a class="dropdown-item" routerLink="/admin"><i class="align-middle me-1" data-feather="settings"></i> My Events</a>
+            <a class="dropdown-item" routerLink="/admin/events/create-event/template"><i class="align-middle me-1" data-feather="help-circle"></i> Create New Event</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Log out</a>
+            <a class="dropdown-item" (click)="logout()">Log out</a>
           </div>
         </li>
       </ul>
     </div>
   </nav>
+  </div>
+
+      <ng-template #elseBlock>
+        <nav class="navbar navbar-expand navbar-light navbar-bg">
+          <a class="sidebar-toggle js-sidebar-toggle">
+            <i class="hamburger align-self-center"></i>
+          </a>
+          <div class="navbar-collapse collapse">
+      </div>
+    </nav>
+      </ng-template>
