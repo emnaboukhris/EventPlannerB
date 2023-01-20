@@ -24,31 +24,25 @@ import { AdminAddSopnsorComponent } from "./admin/components/sponsors/admin-add-
 import { AdminUpdateSopnsorComponent } from "./admin/components/sponsors/admin-update-sopnsor/admin-update-sopnsor.component";
 import { OverViewComponent } from "./over-view/over-view.component";
 import { PublishEventComponent } from "./publish-event/publish-event.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
 
 const APP_ROUTING : Routes = [
     {path:'',component:OverViewComponent },
     {path:'publishEvent/:id',component:PublishEventComponent },
     {path: 'register', component:RegisterComponent},
     {path: 'login', component:LoginComponent},
-
     {path:'admin', canActivate: [AuthGuard] ,children :[
         {path:'',component:EventListComponent, canActivate: [AuthGuard]  },
-
-        {
-            
-            path:'events' ,   canActivate: [AuthGuard] , children : [
-           {path: 'create-event', component:CreateNewEventComponent, canActivate: [AuthGuard] , children :[
+        {path:'events' ,   canActivate: [AuthGuard] , children : [
+            {path: 'create-event', component:CreateNewEventComponent, canActivate: [AuthGuard] , children :[
             {path:'template',component:TemplateComponent,  canActivate: [AuthGuard] }, 
             {path:'new',component:NewEventDetailsComponent,  canActivate: [AuthGuard] }, 
             {path:'components',component:NewEventComponentsComponent,  canActivate: [AuthGuard] }, 
-
-
            ]} , 
            {path: ':idEvent', component: AdminBaseLayoutComponent, canActivate: [AuthGuard] , 
            children: [
-            {path:'',component:AdminProfileComponent,  canActivate: [AuthGuard] }, 
-            {path:'aftedelete',component:AdminProfileComponent,  canActivate: [AuthGuard] }, 
-
+           {path:'',component:AdminProfileComponent,  canActivate: [AuthGuard] }, 
+           {path:'aftedelete',component:AdminProfileComponent,  canActivate: [AuthGuard] }, 
            {path:'overview',component:AdminProfileComponent, canActivate: [AuthGuard] }, 
            {path:'profile',component:AdminProfileComponent,  canActivate: [AuthGuard]  }, 
            {path:'event',component:AdminEventComponent, canActivate: [AuthGuard]  }, 
@@ -56,23 +50,21 @@ const APP_ROUTING : Routes = [
            {path:'schedule',component:AdminScheduleComponent, canActivate: [AuthGuard] },
            {path:'pricing',component:AdminPricingComponent, canActivate: [AuthGuard] }, 
            {path:'speakers',children :[ 
-           {path:'',component:AdminSpeakersComponent, canActivate: [AuthGuard] }, 
-           {path:'add',component:AdminAddSpeakerComponent, canActivate: [AuthGuard] }, 
-           {path:'update/:id',component:AdminUpdateSpeakerComponent, canActivate: [AuthGuard] }, 
-    ]
-        },
-        {path:'sponsors',children :[ 
-            {path:'',component:AdminSopnsorsComponent, canActivate: [AuthGuard] }, 
-            {path:'add',component:AdminAddSopnsorComponent, canActivate: [AuthGuard] }, 
-            {path:'update/:id',component:AdminUpdateSopnsorComponent, canActivate: [AuthGuard] },
-        ]} 
-]} , 
-
-
+                {path:'',component:AdminSpeakersComponent, canActivate: [AuthGuard] }, 
+                {path:'add',component:AdminAddSpeakerComponent, canActivate: [AuthGuard] }, 
+                {path:'update/:id',component:AdminUpdateSpeakerComponent, canActivate: [AuthGuard] }, 
+            ]
+            },
+            {path:'sponsors',children :[ 
+                {path:'',component:AdminSopnsorsComponent, canActivate: [AuthGuard] }, 
+                {path:'add',component:AdminAddSopnsorComponent, canActivate: [AuthGuard] }, 
+                {path:'update/:id',component:AdminUpdateSopnsorComponent, canActivate: [AuthGuard] },
+            ]} 
+        ]} , 
             ]
         }
     ]}, 
-
+    { path: '**', component: NotFoundComponent },
 
 ]    
 

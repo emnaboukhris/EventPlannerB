@@ -57,6 +57,7 @@ import { SpeakersItemComponent } from './home/speakers/speakers-item/speakers-it
 import { SpeakersListComponent } from './home/speakers/speakers-list/speakers-list.component';
 import { ScheduleComponent } from './home/schedule/schedule.component';
 import { PublishEventComponent } from './publish-event/publish-event.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -99,7 +100,7 @@ import { PublishEventComponent } from './publish-event/publish-event.component';
         AdminAddSopnsorComponent,
         AdminUpdateSopnsorComponent,
         AdminSopnsorsComponent,
-        RegisterComponent,LoginComponent
+        RegisterComponent,LoginComponent, NotFoundComponent
 
 
     ],
