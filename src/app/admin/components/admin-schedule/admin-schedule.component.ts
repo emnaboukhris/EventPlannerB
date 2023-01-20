@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SpeakerService } from 'src/app/services/speaker.service';
 import { SessionService } from 'src/app/services/session.service';
 import { Speaker } from 'src/app/models/Speaker';
+import { SponsorService } from 'src/app/services/sponsor.service';
 
 @Component({
   selector: 'app-admin-schedule',
@@ -103,12 +104,12 @@ addOption() {
       reader.readAsDataURL(file);
       this.formData.append('image', file);
     }
-    
+    isOpened = true;
     constructor(
      private _formBuilder: FormBuilder, 
      private router: Router,
      private activatedRoute: ActivatedRoute,
-     private speakerService : SpeakerService ,
+     private speakerService : SpeakerService,
      private sessionService :SessionService
       ) { }
   
@@ -120,9 +121,15 @@ addOption() {
   
    addSession(formulaire :NgForm) : void {
     formulaire.value['eventId']=+this.eventId;
+    console.log(formulaire.value);
+    console.log(this.selectedOption);
+    formulaire.value['event']= +formulaire.value['eventId'];
+    formulaire.value['speaker']=+this.selectedOption;
     this.sessionService.addSession(formulaire.value).subscribe(
       (response: any) => {
         console.log("Promise resolved with data:", response);    
+        this.isOpened = false;
+        this.ngOnInit();
       },
       (error:any) => {
             console.log("Promise rejected with error:", error);
@@ -159,55 +166,56 @@ addOption() {
   formulaire.value['eventId']=+this.eventId
    this.speakerService.addSpeaker( formulaire.value ).subscribe(
     (response: any) => {
-      console.log("Promise resolved with data:", response);
-  
-      // let link ="admin/events/"+this.eventId+"/speakers" ;
-  
-      //  this.router.navigate([link]);
-  
+      console.log("Promise resolved with data:", response);   
     },
     (error:any) => {
           console.log("Promise rejected with error:", error);
         }
         );
-  
     }
-  
-  
-   
-  
-  
-  ngOnInit(): void {
 
-    this.activatedRoute.parent?.parent?.params.subscribe(
+
+    ngOnInit(): void {
+
+    this.activatedRoute.parent?.params.subscribe(
       (params)=> {
         console.log("params :" , params['idEvent'])
       this.eventId =params['idEvent'] ; 
+      console.log(this.eventId);
       this.sessionService.getSessions(+this.eventId).subscribe(
         (sessions)=>{
           this.sessions=sessions 
+          console.log(this.sessions)
         }, (error)=>{
           this.errorMessage="probleme de connexion session" ; 
-
-        }
-      )
-
-      this.speakerService.getSpeakers(+this.eventId).subscribe(
-        (speakers)=>{
-          this.speakers=speakers 
-        }, (error)=>{
-          this.errorMessage="probleme de connexion speakers" ; 
-
         }
       )
       },
       (error)=>{
         console.log(error)
         this.errorMessage="probleme de connexion à votre serveur" ; 
-      
       }
-
   )
+  this.activatedRoute.parent?.params.subscribe(
+    (params)=> {
+      console.log("params :" , params['idEvent'])
+    this.eventId =params['idEvent'] ; 
+    console.log(this.eventId);
+    this.speakerService.getSpeakers(+this.eventId).subscribe(
+      (speakers)=>{
+        this.speakers=speakers;
+        console.log(this.speakers)
+      }, (error)=>{
+        this.errorMessage="probleme de connexion session" ; 
+      }
+    )
+    },
+    (error)=>{
+      console.log(error)
+      this.errorMessage="probleme de connexion à votre serveur" ; 
+    }
+)
+
     document.addEventListener('click', (event:any) => {
       if (!event.target.closest('.sidebar-contact, .toggle')) {
         this.isContactActive = false;
@@ -220,32 +228,8 @@ addOption() {
         this.isBodyOpen = false;
       }
     });
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  toggleSidebarContact() {
-    this.isContactActive = !this.isContactActive;
-    this.isToggleActive = !this.isToggleActive;
-    this.isBodyOpen = !this.isBodyOpen;
-  }
-
-  toggleSidebarSpeaker() {
-    this.isSpeakerActive = !this.isSpeakerActive;
-    this.isToggle2Active = !this.isToggle2Active;
-    this.isBodyOpen = !this.isBodyOpen;
-  }
-  }
+  }  
+}
 
 
 

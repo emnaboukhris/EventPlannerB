@@ -25,6 +25,7 @@ export class CurrentUserService {
         this.http.get(APIS.auth+'/meAdmin')
         .subscribe(data => {
           this.user = data;
+          console.log("this is user info : ",data);
         });
         return this.user;
       }

@@ -29,17 +29,18 @@ import { AdminProfileComponent } from './admin/components/admin-profile/admin-pr
 import { ROUTING } from './app.routing';
 import { NgForm } from '@angular/forms';
 import { AdminScheduleComponent } from './admin/components/admin-schedule/admin-schedule.component';
+import { CreateNewEventComponent } from './admin/newEvent/create-new-event/create-new-event.component';
+import { AdminEventComponent } from './admin/components/admin-event/admin-event.component';
 import { AdminAddSpeakerComponent } from './admin/components/speakers/admin-add-speaker/admin-add-speaker.component';
 import { AdminUpdateSpeakerComponent } from './admin/components/speakers/admin-update-speaker/admin-update-speaker.component';
 import { AdminSpeakersComponent } from './admin/components/speakers/admin-speakers/admin-speakers.component';
 import { EventCreationBaseLayoutComponent } from './admin/layout/event-creation-base-layout/event-creation-base-layout.component';
-import { CreateNewEventComponent } from './admin/newEvent/create-new-event/create-new-event.component';
+import { NewEventComponentsComponent } from './admin/newEvent/steps/new-event-components/new-event-components.component';
 import { EventObjectifComponent } from './admin/newEvent/event-objectif/event-objectif.component';
 import { EventListComponent } from './admin/newEvent/event-list/event-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterPipe } from './pipes/filter.pipe';
 import { NewEventDetailsComponent } from "./admin/newEvent/steps/new-event-details/new-event-details.component";
-import { NewEventComponentsComponent } from "./admin/newEvent/steps/new-event-components/new-event-components.component";
 import { TemplateComponent } from "./admin/newEvent/steps/template/template.component";
 import { HttpClientModule } from '@angular/common/http';
 import { AdminAddSopnsorComponent } from './admin/components/sponsors/admin-add-sopnsor/admin-add-sopnsor.component';
@@ -59,8 +60,15 @@ import {  HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
     declarations: [
         AppComponent,
+        AdminEventComponent,
+        EventListComponent,
+        NewEventComponentsComponent,
+        CreateNewEventComponent,
+        EventObjectifComponent,
+        NewEventDetailsComponent,
         SpeakersListComponent,
         SpeakersItemComponent,
+        TemplateComponent,
         AboutComponent,
         ContactComponent,
         VenueComponent,
@@ -82,10 +90,7 @@ import {  HTTP_INTERCEPTORS } from '@angular/common/http';
         AdminBaseLayoutComponent,
         AdminProfileComponent,
         AdminScheduleComponent, AdminAddSpeakerComponent, AdminUpdateSpeakerComponent, AdminSpeakersComponent, EventCreationBaseLayoutComponent,
-        CreateNewEventComponent, EventObjectifComponent, EventListComponent, FilterPipe,
-        NewEventDetailsComponent,
-        NewEventComponentsComponent ,
-        TemplateComponent,
+         FilterPipe,
         AdminAddSopnsorComponent,
         AdminUpdateSopnsorComponent,
         AdminSopnsorsComponent,

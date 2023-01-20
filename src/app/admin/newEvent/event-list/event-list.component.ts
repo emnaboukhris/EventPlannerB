@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Event } from 'src/app/models/Event';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-event-list',
@@ -11,75 +13,70 @@ export class EventListComponent implements OnInit {
   imageSrc :string ="src\assets\images\profile.jpeg"
 
 
-events : any[]= [
-  {
-    id:"1", 
-title : "test1", 
-dates : "12:2:2000", 
-registrations:"" , 
-status : "draft"
+events! : Event[] ; 
+  searchTerm: string="";
+  constructor(
+    private router :Router , 
+    private eventService : EventService , 
+    private activatedRoute: ActivatedRoute
+    ) { }
+  
+  
+ 
+  
+    delete(id: number) {
+
+      this.eventService.deleteEvent(id).subscribe((res) => {
+        console.log("deleted with success")
+        this.ngOnInit();
+
+      }, (error)=> {
+        console.log("can't delete")
+
+      }
+      
+      
+      ) }
+      // Logic to delete the user at the specified index
+
+
+    
+      preview(id : number){
+        const link = 'admin/events/'+id+'/' ; 
+        this.router.navigate([link])
+    
+
+      }
+  ngOnInit(): void {
+
+    this.eventService.getEvents().subscribe(
+  (events)=> {
+    this.events = events 
+  } , 
+  (error) =>{
 
   }
-  ,  {
-    id:"2", 
 
-    title : "test2", 
-    dates : "12:2:2000", 
-    registrations:"" , 
-    status : "draft"
-    
-      },  {
-        id:"3", 
+    )
 
-        title : "test3", 
-        dates : "12:2:2000", 
-        registrations:"" , 
-        status : "draft"
-        
-          },  {
-            id:"4", 
 
-            title : "test4", 
-            dates : "12:2:2000", 
-            registrations:"" , 
-            status : "draft"
-            
-              },  {
-                id:"5", 
 
-                title : "test5", 
-                dates : "12:2:2000", 
-                registrations:"" , 
-                status : "draft"
-                
-                  }
-]
-  searchTerm: string="";
 
-  
+  }
+
   addOption() {
 
-    const link = ['admin/events/create-event'] ; 
+    const link = ['admin/events/create-event/template'] ; 
     this.router.navigate(link)
 
   }
-    editingIndex = -1;
   
-    update(id: string) {
-      const link = ['admin/speakers/update' ,id] ; 
-      this.router.navigate(link)
+
   
-     
-    }
-  
-    delete(id: string) {
-      // Logic to delete the user at the specified index
-    }
 
 
-  constructor(private router :Router) { }
 
-  ngOnInit(): void {
-  }
+ 
+
 
 }

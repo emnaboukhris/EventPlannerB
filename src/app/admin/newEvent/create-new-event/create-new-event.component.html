@@ -27,78 +27,18 @@
                       
             <div>
               <div id="multi-step-form-container">
-                  <!-- Form Steps / Progress Bar -->
-                  <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
-                      <!-- Step 1 -->
-                      <li  
-                      
-                      [ngClass]="{'form-stepper-active': currentStep === 1, 'active-step': currentStep === 1}"
-                    >
-                          <a class="mx-2">
-                              <span class="form-stepper-circle">
-                                  <span>1</span>
-                              </span>
-                          </a>
-                      </li>
-                      <!-- Step 2 -->
-                      <li 
-                      [ngClass]="{'form-stepper-unfinished': currentStep !== 2, 'unfinished-step': currentStep !== 2}"
-                      
-                     >
-                          <a class="mx-2">
-                              <span class="form-stepper-circle text-muted">
-                                  <span>2</span>
-                              </span>
-                          </a>
-                      </li>
-                      <!-- Step 3 -->
-                      <li 
-                      [ngClass]="{'form-stepper-unfinished': currentStep !== 3, 'unfinished-step': currentStep !== 3}"
-                      
-                     >
-                          <a class="mx-2">
-                              <span class="form-stepper-circle text-muted">
-                                  <span>3</span>
-                              </span>
-                          </a>
-                      </li>
-                  </ul>
-                  <!-- Step Wise Form Content -->
-                      <!-- Step 1 Content -->
-                      <form    *ngIf="currentStep === 1">
-                        <app-template></app-template>
-                        <div class="mb-3">
-                            <button (click)="prevStep()" *ngIf="currentStep > 1">Previous</button>
-                            <button (click)="nextStep()" *ngIf="currentStep < 3">Next</button>   
 
-                        </div>
-                     
 
-                        </form>
-                      <!-- Step 2 Content, default hidden on page load. -->
-                      <form *ngIf="currentStep ===2">
-                          <!-- Step 2 input fields -->
-                            <div class="card-body">
-                             <app-new-event-details></app-new-event-details>
-                             <div class="mt-3">
+                <form >
+                    <router-outlet></router-outlet>
+         
 
-                                <button (click)="prevStep()" *ngIf="currentStep > 1">Previous</button>
-                                <button (click)="nextStep()" *ngIf="currentStep < 3">Next</button>
+                    </form>
 
-                            </div>
-                            
-                                </div>                         
-                                                             
-                            </form>
-                      <!-- Step 3 Content, default hidden on page load. -->
-                      <form  *ngIf="currentStep === 3">
-                     <app-new-event-components></app-new-event-components>
-                          <div class="mt-3">
-                            <button (click)="prevStep()" *ngIf="currentStep > 1">Previous</button>
-                            <button (click)="submit()" >Save</button>
-                          </div>
-                        
-                        </form>
+
+
+
+                
               </div>
           </div>
 

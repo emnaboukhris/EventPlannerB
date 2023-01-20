@@ -12,82 +12,81 @@ import { SponsorService } from 'src/app/services/sponsor.service';
 export class AdminAddSopnsorComponent implements OnInit {
 
   imageSrc :string ="src\assets\images\profile.jpeg"
-  eventId  ="1"
-  errorMessage:string=""
-   formData = new FormData();
+eventId  ="1"
+errorMessage:string=""
+ formData = new FormData();
+
+  uploadFile(event :any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imageSrc = e.target.result;
+    }
+    reader.readAsDataURL(file);
+
+    this.formData.append('image', file);
+
+
+  }
   
-    uploadFile(event :any) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imageSrc = e.target.result;
+  constructor(
+   private _formBuilder: FormBuilder, 
+   private router: Router,
+   private activatedRoute: ActivatedRoute,
+   private sponsorService : SponsorService 
+    ) { }
+
+  ngOnInit(): void {
+
+    this.activatedRoute.parent?.parent?.params.subscribe(
+      (params)=> {
+        console.log("params :" , params['idEvent'])
+      this.eventId =params['idEvent'] ; 
+      },
+      (error)=>{
+        console.log(error)
+        this.errorMessage="probleme de connexion à votre serveur" ; 
+      
       }
-      reader.readAsDataURL(file);
-  
-      this.formData.append('logo', file);
-  
-  
-    }
-    
-    constructor(
-     private _formBuilder: FormBuilder, 
-     private router: Router,
-     private activatedRoute: ActivatedRoute,
-     private sponsorService : SponsorService 
-      ) { }
-  
-    ngOnInit(): void {
-  
-      this.activatedRoute.parent?.parent?.params.subscribe(
-        (params)=> {
-          console.log("params :" , params['idEvent'])
-        this.eventId =params['idEvent'] ; 
-        },
-        (error)=>{
-          console.log(error)
-          this.errorMessage="probleme de connexion à votre serveur" ; 
-        
-        }
-  
-    )
-    
-        } 
-        
-    
-  
-    firstFormGroup = this._formBuilder.group({ firstCtrl: ['', Validators.required],});
-  
-  
-    addSponsor (formulaire: NgForm) : void {
-  
-  
-  this.formData.append('name', formulaire.value.name);
-  this.formData.append('website', formulaire.value.website);
-  this.formData.append('logo', formulaire.value.logo);
 
+  )
   
-      console.log(this.activatedRoute.parent)
-      let link ="admin/events/"+this.eventId+"/sponsors" ;
-  
-       this.router.navigate([link]);
-  
-   formulaire.value['eventId']=+this.eventId
-  
-   this.sponsorService.addSponsor(formulaire.value ).subscribe(
-    (response: any) => {
-      console.log("Promise resolved with data:", response);
-  
-      let link ="admin/events/"+this.eventId+"/sponsrs" ;
-       this.router.navigate([link]);
-  
-    },
-    (error:any) => {
-          console.log("Promise rejected with error:", error);
-        }
-        );
-  
-    }
-  
+      } 
+      
   
 
+  firstFormGroup = this._formBuilder.group({ firstCtrl: ['', Validators.required],});
+
+
+  addSponsor (formulaire: NgForm) : void {
+
+
+  
+    this.formData.append('name', formulaire.value.name);
+    this.formData.append('website', formulaire.value.website);
+    this.formData.append('logo', formulaire.value.logo);
+
+
+
+    console.log("this is the sponsor " ,this.formData.get('name'))
+    this.activatedRoute.url.subscribe(url => console.log(url));
+    console.log(this.activatedRoute.parent)
+    let link ="admin/events/"+this.eventId+"/sponsors" ;
+     this.router.navigate([link]);
+formulaire.value['eventId']=+this.eventId
+ this.sponsorService.addSponsor(formulaire.value ).subscribe(
+  (response: any) => {
+    console.log("Promise resolved with data:", response);
+
+    let link ="admin/events/"+this.eventId+"/sponsors" ;
+
+     this.router.navigate([link]);
+
+  },
+  (error:any) => {
+        console.log("Promise rejected with error:", error);
+      }
+      );
+
+  }
 }

@@ -79,8 +79,7 @@ export class AdminSpeakersComponent implements OnInit {
         this.errorMessage="probleme de connexion à votre serveur" ; 
       
       }
-
-  )
+      )
   }
  
 

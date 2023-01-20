@@ -1,7 +1,7 @@
 .imageCont {
     background-image: url('/assets/images/backgroundImage.png');
-    background-position: bottom 30px right 30px;
-        background-size:contain ;
+    background-position:  right 30px;
+        background-size:cover ;
     background-repeat: no-repeat;
     background-size: 500px;
   

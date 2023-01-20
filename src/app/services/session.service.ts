@@ -10,7 +10,7 @@ export class SessionService {
   constructor(private http: HttpClient) {}
    
 public getSessions(eventId:number):Observable<Session[]>{
-  return this.http.post<Session[]>(`${APIS.sessions}`,eventId)
+  return this.http.post<Session[]>(`${APIS.sessions}/all`,{"eventId":eventId})
 }
 
 public getSessionById(id :number ,eventId:number):Observable<Session>{

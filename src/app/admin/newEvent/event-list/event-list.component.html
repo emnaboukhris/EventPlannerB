@@ -62,28 +62,29 @@
                       <tr>
                         <th>Image</th>
                         <th>Title</th>
-                        <th class="d-none d-xl-table-cell">dates</th>
-                        <th class="d-none d-xl-table-cell">registrations</th>
+                        <th class="d-none d-xl-table-cell">date</th>
+                        <th class="d-none d-xl-table-cell">description</th>
                         <th class="d-none d-xl-table-cell">status</th>
-                        
-                        <th class="d-none d-sm-table-cell"> Edit</th>
+                        <th class="d-none d-sm-table-cell"> Preview</th>
                         <th class="d-none d-sm-table-cell"> Delete</th>
 
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let event of events | filter:'title':searchTerm| paginate: { itemsPerPage: 4, currentPage: p }; let i = index ">
+                      <tr *ngFor="let event of events | filter:'title':searchTerm| paginate: { itemsPerPage: 6, currentPage: p }; let i = index ">
                         <td class="w-10">
-                            <img src="" class="img-fluid img-thumbnail" alt="Sheep">
+                            <img src="src\assets\images\components\schedules.png" class="img-fluid img-thumbnail" alt="Sheep">
                         </td>
+                      
                         <td class="editable">{{event.title}}</td>
-                        <td class="editable" >{{event.dates}}</td>
-                        <td class="editable" >{{event.registrations}}</td>
-                        <td class="editable" >{{event.status}}</td>        
+                        <td class="editable" >{{event.dateStart}}</td>
+                        <td class="editable" >{{event.description}}</td>
+                        <td class="editable" >draft</td>        
                         <td>  
-                          <button class="no-decoration"  (click)="update(event.id)"><i class="icon-edit"></i> </button>
+                          <button class="no-decoration"  (click)="preview(event.id)"><i class="fa fa-eye" aria-hidden="true"></i>
+                          </button>
                         </td>
-                        <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-trash" aria-hidden="true" (click)="delete(event.id)" ></i></td>
                       </tr>
                     </tbody>          
                   </table>

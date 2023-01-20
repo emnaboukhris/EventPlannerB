@@ -12,11 +12,11 @@ export class SponsorService {
   constructor(private http: HttpClient) {}
    
 public getSponsors(eventId:number):Observable<Sponsor[]>{
-  return this.http.post<Sponsor[]>(`${APIS.sponsors}`,eventId)
+  return this.http.post<Sponsor[]>(`${APIS.sponsors}/all`,{"eventId":eventId})
 }
 
-public getSponsorById(id :number ,eventId:number):Observable<Sponsor>{
-  return this.http.post<Sponsor>(`${APIS.sponsors}`,[eventId,id])
+public getSponsorById(id :number):Observable<Sponsor>{
+  return this.http.post<Sponsor>(`${APIS.sponsors}/one`,{"id":id})
 }
 
 public updateSponsor(formData: Sponsor):Observable<Sponsor>{
