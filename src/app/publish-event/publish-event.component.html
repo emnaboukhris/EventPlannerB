@@ -1,39 +1,33 @@
 <div class="body-inner">
-    <!-- Header start -->
-    
-    <app-header></app-header>
-    <!--/ Header end -->
-
-    <!-- banner start-->
-  <app-banner></app-banner>
-    <!-- banner end-->
-    <!-- ts speaker start-->
-  <app-speakers-list></app-speakers-list>
-    <!-- ts speaker end-->
-
-    <!-- ts details start-->
-    <app-details></app-details>
-    <!-- ts details end-->
-
-    <!-- ts schedule start-->
-  <app-schedule></app-schedule>
-    <!-- ts schedule end-->
-
-    <!-- ts pricing start-->
-    <app-pricing-list></app-pricing-list>
-    <!-- ts pricing end-->
-    <!-- ts blog start-->
-    <!-- ts blog end-->
-    <!-- ts sponsors start-->
-   <app-sponsors></app-sponsors>
-    <!-- ts sponsors end-->
-    <!-- ts map direction start-->
-    <app-venue></app-venue>
-    <!-- ts map direction end-->
-    <!-- ts footer area start-->
-  <app-footer></app-footer>
-    <!-- ts footer area end-->
+  <!-- Header start -->
   
-  
-  
-  </div>
+  <app-header></app-header>
+  <!--/ Header end -->
+
+  <!-- banner start-->
+<app-banner [eventId]="eventId" ></app-banner>
+  <!-- banner end-->
+  <!-- ts speaker start-->
+<app-speakers-list [eventId]="eventId"></app-speakers-list>
+  <!-- ts speaker end-->
+
+
+  <!-- ts schedule start-->
+<app-schedule [eventId]="eventId"></app-schedule>
+  <!-- ts schedule end-->
+
+  <!-- ts pricing start-->
+  <!-- ts blog start-->
+  <!-- ts blog end-->
+  <!-- ts sponsors start-->
+ <app-sponsors [eventId]="eventId"></app-sponsors>
+  <!-- ts sponsors end-->
+  <!-- ts map direction start-->
+  <!-- ts map direction end-->
+  <!-- ts footer area start-->
+<app-footer></app-footer>
+  <!-- ts footer area end-->
+
+
+
+</div>

@@ -207,15 +207,22 @@
                 {{ session.description }}
               </td>
 
-              <td class="editable">
+              <td class="editable" [attr.contenteditable]="editingIndex === i">
                 <select
-                  class="form-control"
-                  [attr.contenteditable]="editingIndex === i"
-                >
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Other</option>
-                </select>
+                class="form-control"
+                required
+                [attr.contenteditable]="editingIndex === i"
+                ngModel
+                #speakerInput="ngModel"
+                name="speaker"
+                [(ngModel)]="selectedOption"
+                [ngModelOptions]="{ standalone: true }"
+              >
+                <option *ngFor="let option of speakers" [attr.contenteditable]="editingIndex === i" [value]="option.id">
+                  {{ option.firstName }} {{ option.lastName }}
+                </option>
+              </select>
+    
               </td>
               <td>
                 <button

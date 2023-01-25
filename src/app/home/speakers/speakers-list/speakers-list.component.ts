@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Speaker } from 'src/app/models/Speaker';
+import { SpeakerService } from 'src/app/services/speaker.service';
 
 @Component({
   selector: 'app-speakers-list',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./speakers-list.component.css']
 })
 export class SpeakersListComponent implements OnInit {
+  @Input() eventId! :number;
+  
+  speakers!: Speaker[] ; 
+  constructor(private speakerService : SpeakerService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(
+  
+  ): void {
+this.speakerService.getSpeakers(this.eventId).subscribe(
+  (speakers)=>{
+    this.speakers=speakers ;
+    this.speakers.forEach((speaker:Speaker,index:number)=>
+    {
+      speaker.image = 'assets/images/speakers/speaker'+((index % 8)+1)+'jpg';
+    })  
+  }
+)
   }
 
 }
